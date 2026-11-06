@@ -483,3 +483,26 @@ class RealDataShape(unittest.TestCase):
             self.assertIn("last 60 full sessions", p.stdout)
         finally:
             shutil.rmtree(d)
+
+
+class FullServiceBrokerage(unittest.TestCase):
+    """HDFC InvestRight-style pricing: a percentage with a Rs 25 minimum per order."""
+
+    RATES = {"brokerage_min": 25, "brokerage_max": 10 ** 9, "brokerage_pct": 0.05}
+
+    def test_minimum_applies_on_small_orders(self):
+        # 10 x 100: 0.05% is Rs 0.50 an order, so the Rs 25 minimum applies to both legs
+        got = TOOLS["size"].charges(10, 100, 100, self.RATES)
+        self.assertGreater(got, 50)
+        self.assertEqual(got, TOOLS["risk"].charges(10, 100, 100, self.RATES))
+
+    def test_percentage_applies_on_big_orders(self):
+        # 100 x 1000 = 1 lakh: 0.05% = Rs 50 > Rs 25 minimum, and no Rs 20 cap
+        q, b = 100, 1000.0
+        brok = 2 * 50.0
+        stt, txn, sebi, stamp = 1e5 * 0.00025, 2e5 * 0.0000307, 2e5 * 1e-6, 1e5 * 0.00003
+        want = brok + stt + txn + sebi + stamp + 0.18 * (brok + txn + sebi)
+        self.assertAlmostEqual(TOOLS["size"].charges(q, b, b, self.RATES), want, delta=0.011)
+
+    def test_default_unchanged(self):
+        self.assertEqual(TOOLS["size"].charges(10, 1000, 990), 10.56)

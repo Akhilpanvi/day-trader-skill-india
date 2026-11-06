@@ -165,6 +165,7 @@ BROKERS = {
     "dhan": "Dhan (official MCP, mcp.dhan.co)",
     "groww": "Groww (official MCP, mcp.groww.in)",
     "zerodha": "Zerodha Kite (official MCP, mcp.kite.trade: GTT orders only)",
+    "hdfc": "HDFC Securities InvestRight (no order connector: place it in the HDFC app)",
 }
 
 

@@ -27,6 +27,7 @@ SYMBOLS = ["RELIANCE", "HDFCBANK", "ICICIBANK", "INFY", "TCS", "SBIN", "ITC", "L
            "KOTAKBANK", "BHARTIARTL", "HINDUNILVR", "BAJFINANCE", "MARUTI", "M&M", "SUNPHARMA",
            "TITAN", "NTPC", "BAJAJ-AUTO", "ULTRACEMCO"]
 RISK_INR = 500
+HDFC_IR = {"brokerage_min": 25, "brokerage_max": 10 ** 9, "brokerage_pct": 0.05}   # HDFC InvestRight standard, approx.
 GRID = [(15, "or_mid", 1.0), (15, "or_mid", 2.0), (15, "or_low", 1.0), (15, "or_low", 2.0),
         (30, "or_mid", 1.0), (30, "or_mid", 2.0), (30, "or_low", 1.5)]
 
@@ -69,7 +70,7 @@ def backtest(full):
     last = (15 * 60 + 5 - tm.OPEN_MIN) // 5          # the 15:05 bar: flat by 15:10
     for orm, stop_rule, tr in GRID:
         h = tm.history_replay(full, {"setup": "orb", "or_minutes": orm, "stop_rule": stop_rule, "target_r": tr}, last)
-        net, gross, fees = [], 0.0, 0.0
+        net, gross, fees, fees_hdfc = [], 0.0, 0.0, 0.0
         for t in h["trades"]:
             risk = t["entry"] - t["stop"]
             q = int(RISK_INR // risk) if risk > 0 else 0
@@ -80,11 +81,12 @@ def backtest(full):
             f = size.charges(q, t["entry"], exit_px)
             gross += g
             fees += f
+            fees_hdfc += size.charges(q, t["entry"], exit_px, HDFC_IR)
             net.append(g - f)
         out.append({"or_minutes": orm, "stop": stop_rule, "target_R": tr, "sessions": h["sessions"],
                     "trades": len(net), "target": h["target"], "stop_hits": h["stop"], "at_close": h["close"],
                     "avg_R_before_charges": h["avg_R"], "gross_inr": round(gross, 2), "charges_inr": round(fees, 2),
-                    "net_inr": round(sum(net), 2), "net_per_trade": round(statistics.mean(net), 2) if net else None,
+                    "net_inr": round(sum(net), 2), "net_inr_hdfc_investright": round(gross - fees_hdfc, 2), "net_per_trade": round(statistics.mean(net), 2) if net else None,
                     "win_rate_net": round(sum(1 for x in net if x > 0) / len(net), 3) if net else None})
     return out
 
@@ -170,6 +172,7 @@ def main(argv):
                 t = total.setdefault(k, {"trades": 0, "net": 0.0, "charges": 0.0, "gross": 0.0, "wins": 0})
                 t["trades"] += r["trades"]; t["net"] += r["net_inr"]; t["charges"] += r["charges_inr"]
                 t["gross"] += r["gross_inr"]; t["wins"] += round((r["win_rate_net"] or 0) * r["trades"])
+                t["net_hdfc"] = t.get("net_hdfc", 0.0) + r["net_inr_hdfc_investright"]
         except Exception as e:                           # report it, keep going
             entry["error"] = "%s: %s" % (type(e).__name__, e)
         summary["symbols"][sym] = entry
@@ -193,10 +196,11 @@ def main(argv):
         md.append("| %s | %s | %s (%s) | %s | %s-%s | %s | %s |" % (s, z.get("bars"), z.get("sessions"), z.get("full_sessions"), z.get("filled_bars"),
                   z.get("first_bar"), z.get("last_bar"), ", ".join(z.get("short_sessions") or []) or "-", e.get("error", "")))
     md += ["", "## Backtest, all symbols together", "",
-           "| OR | stop | target | trades | gross ₹ | charges ₹ | net ₹ | net win rate |", "| --- | --- | --- | --- | --- | --- | --- | --- |"]
+           "| OR | stop | target | trades | gross ₹ | charges ₹ | net ₹ (discount) | net ₹ (HDFC InvestRight) | net win rate |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     for r in summary["backtest_total"]:
-        md.append("| %dm | %s | %sR | %d | %s | %s | %s | %s |" % (r["or_minutes"], r["stop"], r["target_R"], r["trades"],
+        md.append("| %dm | %s | %sR | %d | %s | %s | %s | %s | %s |" % (r["or_minutes"], r["stop"], r["target_R"], r["trades"],
                   "{:,.0f}".format(r["gross"]), "{:,.0f}".format(r["charges"]), "{:,.0f}".format(r["net"]),
+                  "{:,.0f}".format(r.get("net_hdfc", 0)),
                   round(r["wins"] / r["trades"], 3) if r["trades"] else "-"))
     md += ["", "## Newest session through the pipeline (replayed at 10:15 IST)", ""]
     for s, e in summary["symbols"].items():

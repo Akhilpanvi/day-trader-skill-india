@@ -85,7 +85,10 @@ FY 2022-23.
 **Charges** default to a discount broker's intraday rates (zerodha.com/charges,
 read 2026-11-06): brokerage the lower of ₹20 or 0.03% an order, STT 0.025% on
 the sell, NSE transaction 0.00307%, SEBI ₹10/crore, stamp 0.003% on the buy,
-GST 18%. Set `"charges"` in `trader/config.json` if yours differ.
+GST 18%. Set `"charges"` in `trader/config.json` if yours differ. A full-service
+broker with a per-order minimum, e.g. HDFC Securities InvestRight's standard plan
+(about 0.05%, minimum ₹25 an order; check your contract note):
+`"broker": "hdfc", "charges": {"brokerage_pct": 0.05, "brokerage_min": 25, "brokerage_max": 1000000000}`.
 
 **Not checked:** ASM/GSM surveillance lists and 2%/5% price bands. Brokers
 often block intraday on those stocks; your broker's app is the final word.

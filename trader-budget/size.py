@@ -94,7 +94,7 @@ SETUP_WORDS = {"orb": "opening-range breakout", "flag": "flag", "bounce": "overs
 # Rs 10/crore both; stamp 0.003% buy; GST 18% on brokerage + txn + SEBI;
 # brokerage the lower of Rs 20 or 0.03% an order (most discount brokers).
 # Override any of these with "charges": {...} in trader/config.json.
-CHARGES = {"brokerage_max": 20.0, "brokerage_pct": 0.03, "stt_sell_pct": 0.025, "txn_pct": 0.00307,
+CHARGES = {"brokerage_min": 0.0, "brokerage_max": 20.0, "brokerage_pct": 0.03, "stt_sell_pct": 0.025, "txn_pct": 0.00307,
            "sebi_pct": 0.0001, "stamp_buy_pct": 0.003, "gst_pct": 18.0}
 
 
@@ -104,7 +104,8 @@ def charges(qty, buy, sell, rates=None):
     r.update(rates or {})
     bv, sv = qty * buy, qty * sell
     pct = lambda v, k: v * r[k] / 100.0
-    brok = sum(min(r["brokerage_max"], pct(v, "brokerage_pct")) for v in (bv, sv) if v > 0)
+    # max(): a full-service minimum (HDFC InvestRight Rs 25); min(): a discount-broker cap (Rs 20)
+    brok = sum(max(r["brokerage_min"], min(r["brokerage_max"], pct(v, "brokerage_pct"))) for v in (bv, sv) if v > 0)
     txn, sebi = pct(bv + sv, "txn_pct"), pct(bv + sv, "sebi_pct")
     total = brok + pct(sv, "stt_sell_pct") + txn + sebi + pct(bv, "stamp_buy_pct") + (brok + txn + sebi) * r["gst_pct"] / 100.0
     return round(total, 2)
