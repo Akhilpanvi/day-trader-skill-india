@@ -1,0 +1,4193 @@
+{
+  "run_at_utc": "2026-11-06T13:10:07Z",
+  "risk_per_trade_inr": 500,
+  "symbols": {
+    "RELIANCE": {
+      "sanity": {
+        "meta_symbol": "RELIANCE.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4390,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 110,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 109,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 14,
+          "stop_hits": 10,
+          "at_close": 6,
+          "avg_R_before_charges": 0.083,
+          "gross_inr": 1244.66,
+          "charges_inr": 2701.08,
+          "net_inr": -1456.42,
+          "net_inr_hdfc_investright": -4506.21,
+          "net_per_trade": -48.55,
+          "win_rate_net": 0.5
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 8,
+          "stop_hits": 12,
+          "at_close": 10,
+          "avg_R_before_charges": 0.172,
+          "gross_inr": 2583.81,
+          "charges_inr": 2701.38,
+          "net_inr": -117.57,
+          "net_inr_hdfc_investright": -3168.26,
+          "net_per_trade": -3.92,
+          "win_rate_net": 0.433
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 9,
+          "stop_hits": 9,
+          "at_close": 12,
+          "avg_R_before_charges": 0.002,
+          "gross_inr": 38.94,
+          "charges_inr": 1883.78,
+          "net_inr": -1844.84,
+          "net_inr_hdfc_investright": -3306.07,
+          "net_per_trade": -61.49,
+          "win_rate_net": 0.467
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 5,
+          "stop_hits": 9,
+          "at_close": 16,
+          "avg_R_before_charges": 0.123,
+          "gross_inr": 1840.87,
+          "charges_inr": 1884.39,
+          "net_inr": -43.52,
+          "net_inr_hdfc_investright": -1505.57,
+          "net_per_trade": -1.45,
+          "win_rate_net": 0.4
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 28,
+          "target": 12,
+          "stop_hits": 8,
+          "at_close": 8,
+          "avg_R_before_charges": 0.086,
+          "gross_inr": 1204.31,
+          "charges_inr": 2360.38,
+          "net_inr": -1156.07,
+          "net_inr_hdfc_investright": -3566.92,
+          "net_per_trade": -41.29,
+          "win_rate_net": 0.464
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 28,
+          "target": 5,
+          "stop_hits": 10,
+          "at_close": 13,
+          "avg_R_before_charges": 0.122,
+          "gross_inr": 1715.96,
+          "charges_inr": 2360.45,
+          "net_inr": -644.49,
+          "net_inr_hdfc_investright": -3055.63,
+          "net_per_trade": -23.02,
+          "win_rate_net": 0.393
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 28,
+          "target": 3,
+          "stop_hits": 7,
+          "at_close": 18,
+          "avg_R_before_charges": -0.021,
+          "gross_inr": -293.91,
+          "charges_inr": 1584.0,
+          "net_inr": -1877.91,
+          "net_inr_hdfc_investright": -3110.1,
+          "net_per_trade": -67.07,
+          "win_rate_net": 0.393
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "RELIANCE  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b91306.00, low \u20b91295.60 (3 of 3 bars).",
+              "TRIGGERED 9:50 AM at \u20b91311.90: the 9:45 bar (bar 6) closed above the range high \u20b91306.00 (+0.45%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: RELIANCE long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b91,311.90 at 9:50 AM (bar 6)",
+              "  Stop          \u20b91,300.80  opening-range midpoint: (\u20b91,306.00 + \u20b91,295.60) / 2 = \u20b91300.8",
+              "  Target        \u20b91,334.10  2R (two times the risk)",
+              "  Risk a share  \u20b911.10 (0.85% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "RELIANCE buy, Friday 2026-11-06: entry 1311.90 at 9:50 AM (bar 6), stop 1300.80, target 1334.10 (2R, risk 11.10 a share).",
+              "10,000 replays of the rest of the session, 9:50 AM to 3:10 PM (64 five-minute bars), seed 19.",
+              "Each bar is drawn whole from RELIANCE's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   4.8 %",
+              "  stop first     37.0 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "RELIANCE buy, opening-range breakout, entry 1311.90 at 9:50 AM",
+              "Stop 1300.80: opening-range midpoint. Target 1334.10: 2R (two times the risk).",
+              "Sized at 1311.90 (the plan's entry). Risk 11.10 a share (entry 1311.90 minus stop 1300.80). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 11.10 risk a share                          45 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy RELIANCE 30 shares, entry",
+              "          entry 1311.90 (the plan's entry), stop 1300.80, target 1334.10: risk 11.10 a share",
+              "          max loss \u20b9374.62 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b960,643 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 30 RELIANCE, market, good for today",
+              "  stop-loss 1300.80",
+              "  take-profit 1334.10",
+              "  max loss about \u20b9374.62 if the stop fills at 1300.80 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on RELIANCE: 30 shares, bound by your max order (30 x 11.10 + charges = \u20b9374.62 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "HDFCBANK": {
+      "sanity": {
+        "meta_symbol": "HDFCBANK.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4389,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 111,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 110,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 39,
+          "target": 19,
+          "stop_hits": 15,
+          "at_close": 5,
+          "avg_R_before_charges": 0.107,
+          "gross_inr": 2074.94,
+          "charges_inr": 3553.06,
+          "net_inr": -1478.12,
+          "net_inr_hdfc_investright": -5383.39,
+          "net_per_trade": -37.9,
+          "win_rate_net": 0.538
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 39,
+          "target": 8,
+          "stop_hits": 17,
+          "at_close": 14,
+          "avg_R_before_charges": 0.1,
+          "gross_inr": 1929.6,
+          "charges_inr": 3553.21,
+          "net_inr": -1623.61,
+          "net_inr_hdfc_investright": -5528.59,
+          "net_per_trade": -41.63,
+          "win_rate_net": 0.41
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 39,
+          "target": 12,
+          "stop_hits": 9,
+          "at_close": 18,
+          "avg_R_before_charges": 0.056,
+          "gross_inr": 1082.57,
+          "charges_inr": 2555.82,
+          "net_inr": -1473.25,
+          "net_inr_hdfc_investright": -3169.69,
+          "net_per_trade": -37.78,
+          "win_rate_net": 0.487
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 39,
+          "target": 2,
+          "stop_hits": 9,
+          "at_close": 28,
+          "avg_R_before_charges": 0.024,
+          "gross_inr": 452.1,
+          "charges_inr": 2555.38,
+          "net_inr": -2103.28,
+          "net_inr_hdfc_investright": -3799.58,
+          "net_per_trade": -53.93,
+          "win_rate_net": 0.462
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 35,
+          "target": 15,
+          "stop_hits": 14,
+          "at_close": 6,
+          "avg_R_before_charges": 0.013,
+          "gross_inr": 220.47,
+          "charges_inr": 2947.17,
+          "net_inr": -2726.7,
+          "net_inr_hdfc_investright": -5543.19,
+          "net_per_trade": -77.91,
+          "win_rate_net": 0.486
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 35,
+          "target": 4,
+          "stop_hits": 15,
+          "at_close": 16,
+          "avg_R_before_charges": -0.045,
+          "gross_inr": -792.48,
+          "charges_inr": 2946.91,
+          "net_inr": -3739.39,
+          "net_inr_hdfc_investright": -6555.09,
+          "net_per_trade": -106.84,
+          "win_rate_net": 0.4
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 35,
+          "target": 4,
+          "stop_hits": 5,
+          "at_close": 26,
+          "avg_R_before_charges": 0.071,
+          "gross_inr": 1229.7,
+          "charges_inr": 2075.17,
+          "net_inr": -845.47,
+          "net_inr_hdfc_investright": -2105.04,
+          "net_per_trade": -24.16,
+          "win_rate_net": 0.514
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "HDFCBANK  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b9767.40, low \u20b9754.65 (3 of 3 bars).",
+              "TRIGGERED 9:35 AM at \u20b9767.65: the 9:30 bar (bar 3) closed above the range high \u20b9767.40 (+0.03%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: HDFCBANK long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b9767.65 at 9:35 AM (bar 3)",
+              "  Stop          \u20b9761.02  opening-range midpoint: (\u20b9767.40 + \u20b9754.65) / 2 = \u20b9761.025, rounded down",
+              "  Target        \u20b9780.91  2R (two times the risk)",
+              "  Risk a share  \u20b96.63 (0.86% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "HDFCBANK buy, Friday 2026-11-06: entry 767.65 at 9:35 AM (bar 3), stop 761.02, target 780.91 (2R, risk 6.63 a share).",
+              "10,000 replays of the rest of the session, 9:35 AM to 3:10 PM (67 five-minute bars), seed 19.",
+              "Each bar is drawn whole from HDFCBANK's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   5.3 %",
+              "  stop first     35.1 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "HDFCBANK buy, opening-range breakout, entry 767.65 at 9:35 AM",
+              "Stop 761.02: opening-range midpoint. Target 780.91: 2R (two times the risk).",
+              "Sized at 767.65 (the plan's entry). Risk 6.63 a share (entry 767.65 minus stop 761.02). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 6.63 risk a share                           75 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy HDFCBANK 52 shares, entry",
+              "          entry 767.65 (the plan's entry), stop 761.02, target 780.91: risk 6.63 a share",
+              "          max loss \u20b9386.96 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b960,082.20 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 52 HDFCBANK, market, good for today",
+              "  stop-loss 761.02",
+              "  take-profit 780.91",
+              "  max loss about \u20b9386.96 if the stop fills at 761.02 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on HDFCBANK: 52 shares, bound by your max order (52 x 6.63 + charges = \u20b9386.96 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "ICICIBANK": {
+      "sanity": {
+        "meta_symbol": "ICICIBANK.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4376,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 124,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 123,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 40,
+          "target": 17,
+          "stop_hits": 19,
+          "at_close": 4,
+          "avg_R_before_charges": -0.047,
+          "gross_inr": -936.17,
+          "charges_inr": 3689.6,
+          "net_inr": -4625.77,
+          "net_inr_hdfc_investright": -8754.6,
+          "net_per_trade": -115.64,
+          "win_rate_net": 0.45
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 40,
+          "target": 11,
+          "stop_hits": 20,
+          "at_close": 9,
+          "avg_R_before_charges": 0.088,
+          "gross_inr": 1739.26,
+          "charges_inr": 3690.37,
+          "net_inr": -1951.11,
+          "net_inr_hdfc_investright": -6081.52,
+          "net_per_trade": -48.78,
+          "win_rate_net": 0.375
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 40,
+          "target": 13,
+          "stop_hits": 13,
+          "at_close": 14,
+          "avg_R_before_charges": -0.012,
+          "gross_inr": -220.61,
+          "charges_inr": 2640.0,
+          "net_inr": -2860.61,
+          "net_inr_hdfc_investright": -4553.41,
+          "net_per_trade": -71.52,
+          "win_rate_net": 0.45
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 40,
+          "target": 3,
+          "stop_hits": 13,
+          "at_close": 24,
+          "avg_R_before_charges": 0.088,
+          "gross_inr": 1768.06,
+          "charges_inr": 2641.09,
+          "net_inr": -873.03,
+          "net_inr_hdfc_investright": -2566.18,
+          "net_per_trade": -21.83,
+          "win_rate_net": 0.45
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 15,
+          "stop_hits": 11,
+          "at_close": 7,
+          "avg_R_before_charges": 0.139,
+          "gross_inr": 2284.56,
+          "charges_inr": 3018.02,
+          "net_inr": -733.46,
+          "net_inr_hdfc_investright": -4041.61,
+          "net_per_trade": -22.23,
+          "win_rate_net": 0.515
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 9,
+          "stop_hits": 11,
+          "at_close": 13,
+          "avg_R_before_charges": 0.359,
+          "gross_inr": 5887.24,
+          "charges_inr": 3019.04,
+          "net_inr": 2868.2,
+          "net_inr_hdfc_investright": -442.1,
+          "net_per_trade": 86.92,
+          "win_rate_net": 0.485
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 33,
+          "target": 5,
+          "stop_hits": 5,
+          "at_close": 23,
+          "avg_R_before_charges": 0.208,
+          "gross_inr": 3391.91,
+          "charges_inr": 2064.68,
+          "net_inr": 1327.23,
+          "net_inr_hdfc_investright": -116.68,
+          "net_per_trade": 40.22,
+          "win_rate_net": 0.485
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "ICICIBANK  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b91518.10, low \u20b91505.00 (3 of 3 bars).",
+              "TRIGGERED 9:50 AM at \u20b91518.80: the 9:45 bar (bar 6) closed above the range high \u20b91518.10 (+0.05%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: ICICIBANK long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b91,518.80 at 9:50 AM (bar 6)",
+              "  Stop          \u20b91,511.55  opening-range midpoint: (\u20b91,518.10 + \u20b91,505.00) / 2 = \u20b91511.55",
+              "  Target        \u20b91,533.30  2R (two times the risk)",
+              "  Risk a share  \u20b97.25 (0.48% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "ICICIBANK buy, Friday 2026-11-06: entry 1518.80 at 9:50 AM (bar 6), stop 1511.55, target 1533.30 (2R, risk 7.25 a share).",
+              "10,000 replays of the rest of the session, 9:50 AM to 3:10 PM (64 five-minute bars), seed 19.",
+              "Each bar is drawn whole from ICICIBANK's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   20.1 %",
+              "  stop first     56.0 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "ICICIBANK buy, opening-range breakout, entry 1518.80 at 9:50 AM",
+              "Stop 1511.55: opening-range midpoint. Target 1533.30: 2R (two times the risk).",
+              "Sized at 1518.80 (the plan's entry). Risk 7.25 a share (entry 1518.80 minus stop 1511.55). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 7.25 risk a share                           68 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy ICICIBANK 26 shares, entry",
+              "          entry 1518.80 (the plan's entry), stop 1511.55, target 1533.30: risk 7.25 a share",
+              "          max loss \u20b9230.35 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b960,511.20 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 26 ICICIBANK, market, good for today",
+              "  stop-loss 1511.55",
+              "  take-profit 1533.30",
+              "  max loss about \u20b9230.35 if the stop fills at 1511.55 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on ICICIBANK: 26 shares, bound by your max order (26 x 7.25 + charges = \u20b9230.35 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "INFY": {
+      "sanity": {
+        "meta_symbol": "INFY.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4383,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 117,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 116,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 22,
+          "target": 6,
+          "stop_hits": 9,
+          "at_close": 7,
+          "avg_R_before_charges": -0.175,
+          "gross_inr": -1925.39,
+          "charges_inr": 1463.06,
+          "net_inr": -3388.45,
+          "net_inr_hdfc_investright": -4388.78,
+          "net_per_trade": -154.02,
+          "win_rate_net": 0.364
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 22,
+          "target": 1,
+          "stop_hits": 10,
+          "at_close": 11,
+          "avg_R_before_charges": -0.334,
+          "gross_inr": -3665.76,
+          "charges_inr": 1461.78,
+          "net_inr": -5127.54,
+          "net_inr_hdfc_investright": -6127.61,
+          "net_per_trade": -233.07,
+          "win_rate_net": 0.273
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 22,
+          "target": 1,
+          "stop_hits": 3,
+          "at_close": 18,
+          "avg_R_before_charges": -0.136,
+          "gross_inr": -1493.23,
+          "charges_inr": 887.64,
+          "net_inr": -2380.87,
+          "net_inr_hdfc_investright": -3194.96,
+          "net_per_trade": -108.22,
+          "win_rate_net": 0.364
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 22,
+          "target": 0,
+          "stop_hits": 3,
+          "at_close": 19,
+          "avg_R_before_charges": -0.121,
+          "gross_inr": -1331.41,
+          "charges_inr": 887.74,
+          "net_inr": -2219.15,
+          "net_inr_hdfc_investright": -3033.19,
+          "net_per_trade": -100.87,
+          "win_rate_net": 0.364
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 20,
+          "target": 3,
+          "stop_hits": 7,
+          "at_close": 10,
+          "avg_R_before_charges": -0.276,
+          "gross_inr": -2723.03,
+          "charges_inr": 1155.15,
+          "net_inr": -3878.18,
+          "net_inr_hdfc_investright": -4612.88,
+          "net_per_trade": -193.91,
+          "win_rate_net": 0.3
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 20,
+          "target": 1,
+          "stop_hits": 7,
+          "at_close": 12,
+          "avg_R_before_charges": -0.233,
+          "gross_inr": -2292.81,
+          "charges_inr": 1155.42,
+          "net_inr": -3448.23,
+          "net_inr_hdfc_investright": -4183.02,
+          "net_per_trade": -172.41,
+          "win_rate_net": 0.3
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 20,
+          "target": 0,
+          "stop_hits": 2,
+          "at_close": 18,
+          "avg_R_before_charges": -0.129,
+          "gross_inr": -1285.38,
+          "charges_inr": 679.59,
+          "net_inr": -1964.97,
+          "net_inr_hdfc_investright": -2710.45,
+          "net_per_trade": -98.25,
+          "win_rate_net": 0.35
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": false,
+        "steps": [
+          [
+            "entry",
+            1,
+            [
+              "INFY  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b91198.80, low \u20b91179.00 (3 of 3 bars).",
+              "WAITING  last close \u20b91185.00 (10:10 bar), \u20b913.80 under the range high \u20b91198.80 (-1.15%)."
+            ]
+          ]
+        ]
+      }
+    },
+    "TCS": {
+      "sanity": {
+        "meta_symbol": "TCS.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4379,
+        "sessions": 60,
+        "full_sessions": 59,
+        "filled_bars": 117,
+        "short_sessions": [
+          "2026-10-15:71"
+        ],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 120,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 26,
+          "target": 6,
+          "stop_hits": 11,
+          "at_close": 9,
+          "avg_R_before_charges": -0.179,
+          "gross_inr": -2280.47,
+          "charges_inr": 1657.76,
+          "net_inr": -3938.23,
+          "net_inr_hdfc_investright": -4972.52,
+          "net_per_trade": -151.47,
+          "win_rate_net": 0.385
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 26,
+          "target": 2,
+          "stop_hits": 12,
+          "at_close": 12,
+          "avg_R_before_charges": -0.24,
+          "gross_inr": -3062.83,
+          "charges_inr": 1657.46,
+          "net_inr": -4720.29,
+          "net_inr_hdfc_investright": -5754.47,
+          "net_per_trade": -181.55,
+          "win_rate_net": 0.346
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 26,
+          "target": 2,
+          "stop_hits": 8,
+          "at_close": 16,
+          "avg_R_before_charges": -0.269,
+          "gross_inr": -3440.2,
+          "charges_inr": 981.26,
+          "net_inr": -4421.46,
+          "net_inr_hdfc_investright": -5336.49,
+          "net_per_trade": -170.06,
+          "win_rate_net": 0.346
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 26,
+          "target": 1,
+          "stop_hits": 8,
+          "at_close": 17,
+          "avg_R_before_charges": -0.231,
+          "gross_inr": -2961.22,
+          "charges_inr": 981.57,
+          "net_inr": -3942.79,
+          "net_inr_hdfc_investright": -4857.65,
+          "net_per_trade": -151.65,
+          "win_rate_net": 0.346
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 21,
+          "target": 4,
+          "stop_hits": 7,
+          "at_close": 10,
+          "avg_R_before_charges": -0.166,
+          "gross_inr": -1699.86,
+          "charges_inr": 1215.25,
+          "net_inr": -2915.11,
+          "net_inr_hdfc_investright": -3669.45,
+          "net_per_trade": -138.81,
+          "win_rate_net": 0.381
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 21,
+          "target": 1,
+          "stop_hits": 8,
+          "at_close": 12,
+          "avg_R_before_charges": -0.196,
+          "gross_inr": -2023.43,
+          "charges_inr": 1215.25,
+          "net_inr": -3238.68,
+          "net_inr_hdfc_investright": -3992.6,
+          "net_per_trade": -154.22,
+          "win_rate_net": 0.333
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 59,
+          "trades": 21,
+          "target": 1,
+          "stop_hits": 3,
+          "at_close": 17,
+          "avg_R_before_charges": -0.127,
+          "gross_inr": -1304.88,
+          "charges_inr": 698.38,
+          "net_inr": -2003.26,
+          "net_inr_hdfc_investright": -2799.16,
+          "net_per_trade": -95.39,
+          "win_rate_net": 0.333
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": false,
+        "steps": [
+          [
+            "entry",
+            1,
+            [
+              "TCS  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b92564.60, low \u20b92519.80 (3 of 3 bars).",
+              "WAITING  last close \u20b92537.40 (10:10 bar), \u20b927.20 under the range high \u20b92564.60 (-1.06%)."
+            ]
+          ]
+        ]
+      }
+    },
+    "SBIN": {
+      "sanity": {
+        "meta_symbol": "SBIN.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4389,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 111,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 110,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 35,
+          "target": 10,
+          "stop_hits": 17,
+          "at_close": 8,
+          "avg_R_before_charges": -0.18,
+          "gross_inr": -3117.82,
+          "charges_inr": 2980.01,
+          "net_inr": -6097.83,
+          "net_inr_hdfc_investright": -9076.35,
+          "net_per_trade": -174.22,
+          "win_rate_net": 0.371
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 35,
+          "target": 2,
+          "stop_hits": 20,
+          "at_close": 13,
+          "avg_R_before_charges": -0.364,
+          "gross_inr": -6337.56,
+          "charges_inr": 2979.09,
+          "net_inr": -9316.65,
+          "net_inr_hdfc_investright": -12293.28,
+          "net_per_trade": -266.19,
+          "win_rate_net": 0.257
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 35,
+          "target": 6,
+          "stop_hits": 10,
+          "at_close": 19,
+          "avg_R_before_charges": -0.045,
+          "gross_inr": -768.98,
+          "charges_inr": 2138.87,
+          "net_inr": -2907.85,
+          "net_inr_hdfc_investright": -4300.36,
+          "net_per_trade": -83.08,
+          "win_rate_net": 0.457
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 35,
+          "target": 1,
+          "stop_hits": 10,
+          "at_close": 24,
+          "avg_R_before_charges": -0.085,
+          "gross_inr": -1472.47,
+          "charges_inr": 2138.71,
+          "net_inr": -3611.18,
+          "net_inr_hdfc_investright": -5003.24,
+          "net_per_trade": -103.18,
+          "win_rate_net": 0.429
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 32,
+          "target": 8,
+          "stop_hits": 12,
+          "at_close": 12,
+          "avg_R_before_charges": -0.076,
+          "gross_inr": -1199.49,
+          "charges_inr": 2720.41,
+          "net_inr": -3919.9,
+          "net_inr_hdfc_investright": -6553.51,
+          "net_per_trade": -122.5,
+          "win_rate_net": 0.438
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 32,
+          "target": 3,
+          "stop_hits": 14,
+          "at_close": 15,
+          "avg_R_before_charges": -0.145,
+          "gross_inr": -2299.2,
+          "charges_inr": 2720.1,
+          "net_inr": -5019.3,
+          "net_inr_hdfc_investright": -7652.26,
+          "net_per_trade": -156.85,
+          "win_rate_net": 0.344
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 32,
+          "target": 1,
+          "stop_hits": 9,
+          "at_close": 22,
+          "avg_R_before_charges": -0.114,
+          "gross_inr": -1819.46,
+          "charges_inr": 1908.2,
+          "net_inr": -3727.66,
+          "net_inr_hdfc_investright": -4951.35,
+          "net_per_trade": -116.49,
+          "win_rate_net": 0.406
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "SBIN  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b9999.30, low \u20b9991.55 (3 of 3 bars).",
+              "TRIGGERED 9:50 AM at \u20b91000.50: the 9:45 bar (bar 6) closed above the range high \u20b9999.30 (+0.12%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: SBIN long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b91,000.50 at 9:50 AM (bar 6)",
+              "  Stop          \u20b9995.42  opening-range midpoint: (\u20b9999.30 + \u20b9991.55) / 2 = \u20b9995.425, rounded down",
+              "  Target        \u20b91,010.66  2R (two times the risk)",
+              "  Risk a share  \u20b95.08 (0.51% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "SBIN buy, Friday 2026-11-06: entry 1000.50 at 9:50 AM (bar 6), stop 995.42, target 1010.66 (2R, risk 5.08 a share).",
+              "10,000 replays of the rest of the session, 9:50 AM to 3:10 PM (64 five-minute bars), seed 19.",
+              "Each bar is drawn whole from SBIN's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   15.2 %",
+              "  stop first     65.0 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "SBIN buy, opening-range breakout, entry 1000.50 at 9:50 AM",
+              "Stop 995.42: opening-range midpoint. Target 1010.66: 2R (two times the risk).",
+              "Sized at 1000.50 (the plan's entry). Risk 5.08 a share (entry 1000.50 minus stop 995.42). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 5.08 risk a share                           98 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy SBIN 39 shares, entry",
+              "          entry 1000.50 (the plan's entry), stop 995.42, target 1010.66: risk 5.08 a share",
+              "          max loss \u20b9239.46 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b960,980.50 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 39 SBIN, market, good for today",
+              "  stop-loss 995.42",
+              "  take-profit 1010.66",
+              "  max loss about \u20b9239.46 if the stop fills at 995.42 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on SBIN: 39 shares, bound by your max order (39 x 5.08 + charges = \u20b9239.46 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "ITC": {
+      "sanity": {
+        "meta_symbol": "ITC.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4391,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 109,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 108,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 13,
+          "stop_hits": 14,
+          "at_close": 6,
+          "avg_R_before_charges": 0.0,
+          "gross_inr": 2.27,
+          "charges_inr": 2873.54,
+          "net_inr": -2871.27,
+          "net_inr_hdfc_investright": -6065.08,
+          "net_per_trade": -87.01,
+          "win_rate_net": 0.515
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 6,
+          "stop_hits": 16,
+          "at_close": 11,
+          "avg_R_before_charges": 0.042,
+          "gross_inr": 681.72,
+          "charges_inr": 2873.91,
+          "net_inr": -2192.19,
+          "net_inr_hdfc_investright": -5386.21,
+          "net_per_trade": -66.43,
+          "win_rate_net": 0.424
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 10,
+          "stop_hits": 10,
+          "at_close": 13,
+          "avg_R_before_charges": 0.013,
+          "gross_inr": 204.9,
+          "charges_inr": 2056.71,
+          "net_inr": -1851.81,
+          "net_inr_hdfc_investright": -3398.14,
+          "net_per_trade": -56.12,
+          "win_rate_net": 0.515
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 2,
+          "stop_hits": 10,
+          "at_close": 21,
+          "avg_R_before_charges": 0.08,
+          "gross_inr": 1308.04,
+          "charges_inr": 2057.22,
+          "net_inr": -749.18,
+          "net_inr_hdfc_investright": -2295.96,
+          "net_per_trade": -22.7,
+          "win_rate_net": 0.515
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 31,
+          "target": 11,
+          "stop_hits": 11,
+          "at_close": 9,
+          "avg_R_before_charges": 0.07,
+          "gross_inr": 1075.86,
+          "charges_inr": 2586.23,
+          "net_inr": -1510.37,
+          "net_inr_hdfc_investright": -4216.97,
+          "net_per_trade": -48.72,
+          "win_rate_net": 0.548
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 31,
+          "target": 6,
+          "stop_hits": 12,
+          "at_close": 13,
+          "avg_R_before_charges": 0.132,
+          "gross_inr": 2046.05,
+          "charges_inr": 2586.68,
+          "net_inr": -540.63,
+          "net_inr_hdfc_investright": -3247.63,
+          "net_per_trade": -17.44,
+          "win_rate_net": 0.452
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 31,
+          "target": 4,
+          "stop_hits": 7,
+          "at_close": 20,
+          "avg_R_before_charges": 0.135,
+          "gross_inr": 2089.28,
+          "charges_inr": 1805.08,
+          "net_inr": 284.2,
+          "net_inr_hdfc_investright": -1037.34,
+          "net_per_trade": 9.17,
+          "win_rate_net": 0.548
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "ITC  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b9278.60, low \u20b9275.95 (3 of 3 bars).",
+              "TRIGGERED 9:45 AM at \u20b9279.35: the 9:40 bar (bar 5) closed above the range high \u20b9278.60 (+0.27%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: ITC long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b9279.35 at 9:45 AM (bar 5)",
+              "  Stop          \u20b9277.27  opening-range midpoint: (\u20b9278.60 + \u20b9275.95) / 2 = \u20b9277.275, rounded down",
+              "  Target        \u20b9283.51  2R (two times the risk)",
+              "  Risk a share  \u20b92.08 (0.74% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "ITC buy, Friday 2026-11-06: entry 279.35 at 9:45 AM (bar 5), stop 277.27, target 283.51 (2R, risk 2.08 a share).",
+              "10,000 replays of the rest of the session, 9:45 AM to 3:10 PM (65 five-minute bars), seed 19.",
+              "Each bar is drawn whole from ITC's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   10.2 %",
+              "  stop first     45.4 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "ITC buy, opening-range breakout, entry 279.35 at 9:45 AM",
+              "Stop 277.27: opening-range midpoint. Target 283.51: 2R (two times the risk).",
+              "Sized at 279.35 (the plan's entry). Risk 2.08 a share (entry 279.35 minus stop 277.27). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 2.08 risk a share                          240 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy ITC 143 shares, entry",
+              "          entry 279.35 (the plan's entry), stop 277.27, target 283.51: risk 2.08 a share",
+              "          max loss \u20b9339.71 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b960,052.95 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 143 ITC, market, good for today",
+              "  stop-loss 277.27",
+              "  take-profit 283.51",
+              "  max loss about \u20b9339.71 if the stop fills at 277.27 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on ITC: 143 shares, bound by your max order (143 x 2.08 + charges = \u20b9339.71 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "LT": {
+      "sanity": {
+        "meta_symbol": "LT.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4377,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 123,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 122,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 14,
+          "stop_hits": 13,
+          "at_close": 7,
+          "avg_R_before_charges": 0.038,
+          "gross_inr": 564.32,
+          "charges_inr": 3055.31,
+          "net_inr": -2490.99,
+          "net_inr_hdfc_investright": -5769.77,
+          "net_per_trade": -73.26,
+          "win_rate_net": 0.5
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 6,
+          "stop_hits": 16,
+          "at_close": 12,
+          "avg_R_before_charges": 0.044,
+          "gross_inr": 654.29,
+          "charges_inr": 3055.4,
+          "net_inr": -2401.11,
+          "net_inr_hdfc_investright": -5679.86,
+          "net_per_trade": -70.62,
+          "win_rate_net": 0.412
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 8,
+          "stop_hits": 9,
+          "at_close": 17,
+          "avg_R_before_charges": 0.016,
+          "gross_inr": 173.73,
+          "charges_inr": 2200.43,
+          "net_inr": -2026.7,
+          "net_inr_hdfc_investright": -3385.61,
+          "net_per_trade": -59.61,
+          "win_rate_net": 0.5
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 0,
+          "stop_hits": 9,
+          "at_close": 25,
+          "avg_R_before_charges": -0.061,
+          "gross_inr": -1093.35,
+          "charges_inr": 2199.99,
+          "net_inr": -3293.34,
+          "net_inr_hdfc_investright": -4651.67,
+          "net_per_trade": -96.86,
+          "win_rate_net": 0.441
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 12,
+          "stop_hits": 13,
+          "at_close": 8,
+          "avg_R_before_charges": -0.025,
+          "gross_inr": -409.96,
+          "charges_inr": 2787.57,
+          "net_inr": -3197.53,
+          "net_inr_hdfc_investright": -5826.87,
+          "net_per_trade": -96.89,
+          "win_rate_net": 0.455
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 4,
+          "stop_hits": 14,
+          "at_close": 15,
+          "avg_R_before_charges": 0.031,
+          "gross_inr": 492.33,
+          "charges_inr": 2787.89,
+          "net_inr": -2295.56,
+          "net_inr_hdfc_investright": -4925.37,
+          "net_per_trade": -69.56,
+          "win_rate_net": 0.424
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 33,
+          "target": 1,
+          "stop_hits": 8,
+          "at_close": 24,
+          "avg_R_before_charges": -0.058,
+          "gross_inr": -1001.19,
+          "charges_inr": 1935.3,
+          "net_inr": -2936.49,
+          "net_inr_hdfc_investright": -4102.82,
+          "net_per_trade": -88.98,
+          "win_rate_net": 0.424
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": false,
+        "steps": [
+          [
+            "entry",
+            1,
+            [
+              "LT  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b94049.00, low \u20b93997.10 (3 of 3 bars).",
+              "WAITING  last close \u20b94032.60 (10:10 bar), \u20b916.40 under the range high \u20b94049.00 (-0.41%)."
+            ]
+          ]
+        ]
+      }
+    },
+    "AXISBANK": {
+      "sanity": {
+        "meta_symbol": "AXISBANK.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4385,
+        "sessions": 60,
+        "full_sessions": 59,
+        "filled_bars": 111,
+        "short_sessions": [
+          "2026-10-15:71"
+        ],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 114,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 40,
+          "target": 15,
+          "stop_hits": 18,
+          "at_close": 7,
+          "avg_R_before_charges": -0.04,
+          "gross_inr": -818.23,
+          "charges_inr": 3547.69,
+          "net_inr": -4365.92,
+          "net_inr_hdfc_investright": -8063.13,
+          "net_per_trade": -109.15,
+          "win_rate_net": 0.475
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 40,
+          "target": 7,
+          "stop_hits": 21,
+          "at_close": 12,
+          "avg_R_before_charges": 0.001,
+          "gross_inr": -5.23,
+          "charges_inr": 3548.04,
+          "net_inr": -3553.27,
+          "net_inr_hdfc_investright": -7250.82,
+          "net_per_trade": -88.83,
+          "win_rate_net": 0.4
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 40,
+          "target": 12,
+          "stop_hits": 13,
+          "at_close": 15,
+          "avg_R_before_charges": -0.05,
+          "gross_inr": -1003.63,
+          "charges_inr": 2568.48,
+          "net_inr": -3572.11,
+          "net_inr_hdfc_investright": -5153.34,
+          "net_per_trade": -89.3,
+          "win_rate_net": 0.475
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 40,
+          "target": 4,
+          "stop_hits": 13,
+          "at_close": 23,
+          "avg_R_before_charges": -0.025,
+          "gross_inr": -525.75,
+          "charges_inr": 2568.2,
+          "net_inr": -3093.95,
+          "net_inr_hdfc_investright": -4676.04,
+          "net_per_trade": -77.35,
+          "win_rate_net": 0.45
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 15,
+          "stop_hits": 13,
+          "at_close": 9,
+          "avg_R_before_charges": 0.067,
+          "gross_inr": 1225.62,
+          "charges_inr": 3102.25,
+          "net_inr": -1876.63,
+          "net_inr_hdfc_investright": -4791.58,
+          "net_per_trade": -50.72,
+          "win_rate_net": 0.514
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 5,
+          "stop_hits": 16,
+          "at_close": 16,
+          "avg_R_before_charges": 0.057,
+          "gross_inr": 1026.74,
+          "charges_inr": 3102.34,
+          "net_inr": -2075.6,
+          "net_inr_hdfc_investright": -4990.29,
+          "net_per_trade": -56.1,
+          "win_rate_net": 0.405
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 59,
+          "trades": 37,
+          "target": 4,
+          "stop_hits": 10,
+          "at_close": 23,
+          "avg_R_before_charges": -0.042,
+          "gross_inr": -790.34,
+          "charges_inr": 2150.68,
+          "net_inr": -2941.02,
+          "net_inr_hdfc_investright": -4281.03,
+          "net_per_trade": -79.49,
+          "win_rate_net": 0.432
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "AXISBANK  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b91285.20, low \u20b91276.20 (3 of 3 bars).",
+              "TRIGGERED 9:50 AM at \u20b91285.80: the 9:45 bar (bar 6) closed above the range high \u20b91285.20 (+0.05%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: AXISBANK long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b91,285.80 at 9:50 AM (bar 6)",
+              "  Stop          \u20b91,280.70  opening-range midpoint: (\u20b91,285.20 + \u20b91,276.20) / 2 = \u20b91280.7",
+              "  Target        \u20b91,296.00  2R (two times the risk)",
+              "  Risk a share  \u20b95.10 (0.40% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "AXISBANK buy, Friday 2026-11-06: entry 1285.80 at 9:50 AM (bar 6), stop 1280.70, target 1296.00 (2R, risk 5.10 a share).",
+              "10,000 replays of the rest of the session, 9:50 AM to 3:10 PM (64 five-minute bars), seed 19.",
+              "Each bar is drawn whole from AXISBANK's own 5-min bars at the same time of day (+-2 bars) over its last 58 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   33.3 %",
+              "  stop first     60.1 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "AXISBANK buy, opening-range breakout, entry 1285.80 at 9:50 AM",
+              "Stop 1280.70: opening-range midpoint. Target 1296.00: 2R (two times the risk).",
+              "Sized at 1285.80 (the plan's entry). Risk 5.10 a share (entry 1285.80 minus stop 1280.70). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 5.10 risk a share                           98 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy AXISBANK 31 shares, entry",
+              "          entry 1285.80 (the plan's entry), stop 1280.70, target 1296.00: risk 5.10 a share",
+              "          max loss \u20b9200.36 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b960,140.20 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 31 AXISBANK, market, good for today",
+              "  stop-loss 1280.70",
+              "  take-profit 1296.00",
+              "  max loss about \u20b9200.36 if the stop fills at 1280.70 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on AXISBANK: 31 shares, bound by your max order (31 x 5.10 + charges = \u20b9200.36 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "KOTAKBANK": {
+      "sanity": {
+        "meta_symbol": "KOTAKBANK.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4387,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 113,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 112,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 43,
+          "target": 19,
+          "stop_hits": 18,
+          "at_close": 6,
+          "avg_R_before_charges": -0.013,
+          "gross_inr": -277.28,
+          "charges_inr": 3691.83,
+          "net_inr": -3969.11,
+          "net_inr_hdfc_investright": -7921.93,
+          "net_per_trade": -92.3,
+          "win_rate_net": 0.442
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 43,
+          "target": 8,
+          "stop_hits": 21,
+          "at_close": 14,
+          "avg_R_before_charges": -0.023,
+          "gross_inr": -516.4,
+          "charges_inr": 3692.01,
+          "net_inr": -4208.41,
+          "net_inr_hdfc_investright": -8160.82,
+          "net_per_trade": -97.87,
+          "win_rate_net": 0.326
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 43,
+          "target": 11,
+          "stop_hits": 11,
+          "at_close": 21,
+          "avg_R_before_charges": -0.014,
+          "gross_inr": -301.7,
+          "charges_inr": 2653.7,
+          "net_inr": -2955.4,
+          "net_inr_hdfc_investright": -4781.54,
+          "net_per_trade": -68.73,
+          "win_rate_net": 0.395
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 43,
+          "target": 3,
+          "stop_hits": 11,
+          "at_close": 29,
+          "avg_R_before_charges": 0.025,
+          "gross_inr": 535.75,
+          "charges_inr": 2654.13,
+          "net_inr": -2118.38,
+          "net_inr_hdfc_investright": -3944.59,
+          "net_per_trade": -49.26,
+          "win_rate_net": 0.349
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 40,
+          "target": 16,
+          "stop_hits": 16,
+          "at_close": 8,
+          "avg_R_before_charges": -0.049,
+          "gross_inr": -980.77,
+          "charges_inr": 3233.16,
+          "net_inr": -4213.93,
+          "net_inr_hdfc_investright": -7413.52,
+          "net_per_trade": -105.35,
+          "win_rate_net": 0.425
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 40,
+          "target": 6,
+          "stop_hits": 18,
+          "at_close": 16,
+          "avg_R_before_charges": -0.02,
+          "gross_inr": -426.75,
+          "charges_inr": 3234.05,
+          "net_inr": -3660.8,
+          "net_inr_hdfc_investright": -6859.97,
+          "net_per_trade": -91.52,
+          "win_rate_net": 0.325
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 40,
+          "target": 4,
+          "stop_hits": 9,
+          "at_close": 27,
+          "avg_R_before_charges": -0.011,
+          "gross_inr": -218.07,
+          "charges_inr": 2255.6,
+          "net_inr": -2473.67,
+          "net_inr_hdfc_investright": -4044.66,
+          "net_per_trade": -61.84,
+          "win_rate_net": 0.35
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "KOTAKBANK  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b9469.65, low \u20b9463.00 (3 of 3 bars).",
+              "TRIGGERED 9:55 AM at \u20b9470.60: the 9:50 bar (bar 7) closed above the range high \u20b9469.65 (+0.20%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: KOTAKBANK long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b9470.60 at 9:55 AM (bar 7)",
+              "  Stop          \u20b9466.32  opening-range midpoint: (\u20b9469.65 + \u20b9463.00) / 2 = \u20b9466.325, rounded down",
+              "  Target        \u20b9479.16  2R (two times the risk)",
+              "  Risk a share  \u20b94.28 (0.91% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "KOTAKBANK buy, Friday 2026-11-06: entry 470.60 at 9:55 AM (bar 7), stop 466.32, target 479.16 (2R, risk 4.28 a share).",
+              "10,000 replays of the rest of the session, 9:55 AM to 3:10 PM (63 five-minute bars), seed 19.",
+              "Each bar is drawn whole from KOTAKBANK's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   7.1 %",
+              "  stop first     28.8 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "KOTAKBANK buy, opening-range breakout, entry 470.60 at 9:55 AM",
+              "Stop 466.32: opening-range midpoint. Target 479.16: 2R (two times the risk).",
+              "Sized at 470.60 (the plan's entry). Risk 4.28 a share (entry 470.60 minus stop 466.32). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 4.28 risk a share                          116 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy KOTAKBANK 84 shares, entry",
+              "          entry 470.60 (the plan's entry), stop 466.32, target 479.16: risk 4.28 a share",
+              "          max loss \u20b9401.30 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b960,469.60 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 84 KOTAKBANK, market, good for today",
+              "  stop-loss 466.32",
+              "  take-profit 479.16",
+              "  max loss about \u20b9401.30 if the stop fills at 466.32 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on KOTAKBANK: 84 shares, bound by your max order (84 x 4.28 + charges = \u20b9401.30 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "BHARTIARTL": {
+      "sanity": {
+        "meta_symbol": "BHARTIARTL.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4379,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 121,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 120,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 32,
+          "target": 13,
+          "stop_hits": 14,
+          "at_close": 5,
+          "avg_R_before_charges": -0.044,
+          "gross_inr": -710.84,
+          "charges_inr": 3053.03,
+          "net_inr": -3763.87,
+          "net_inr_hdfc_investright": -7514.09,
+          "net_per_trade": -117.62,
+          "win_rate_net": 0.469
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 32,
+          "target": 9,
+          "stop_hits": 15,
+          "at_close": 8,
+          "avg_R_before_charges": 0.18,
+          "gross_inr": 2853.95,
+          "charges_inr": 3054.06,
+          "net_inr": -200.11,
+          "net_inr_hdfc_investright": -3952.44,
+          "net_per_trade": -6.25,
+          "win_rate_net": 0.438
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 32,
+          "target": 11,
+          "stop_hits": 11,
+          "at_close": 10,
+          "avg_R_before_charges": 0.015,
+          "gross_inr": 203.29,
+          "charges_inr": 2192.44,
+          "net_inr": -1989.15,
+          "net_inr_hdfc_investright": -3471.01,
+          "net_per_trade": -62.16,
+          "win_rate_net": 0.438
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 32,
+          "target": 5,
+          "stop_hits": 12,
+          "at_close": 15,
+          "avg_R_before_charges": 0.055,
+          "gross_inr": 844.64,
+          "charges_inr": 2192.69,
+          "net_inr": -1348.05,
+          "net_inr_hdfc_investright": -2830.58,
+          "net_per_trade": -42.13,
+          "win_rate_net": 0.375
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 28,
+          "target": 12,
+          "stop_hits": 10,
+          "at_close": 6,
+          "avg_R_before_charges": 0.05,
+          "gross_inr": 674.01,
+          "charges_inr": 2477.9,
+          "net_inr": -1803.89,
+          "net_inr_hdfc_investright": -4532.02,
+          "net_per_trade": -64.42,
+          "win_rate_net": 0.464
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 28,
+          "target": 9,
+          "stop_hits": 10,
+          "at_close": 9,
+          "avg_R_before_charges": 0.377,
+          "gross_inr": 5206.51,
+          "charges_inr": 2479.2,
+          "net_inr": 2727.31,
+          "net_inr_hdfc_investright": -3.5,
+          "net_per_trade": 97.4,
+          "win_rate_net": 0.464
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 28,
+          "target": 6,
+          "stop_hits": 8,
+          "at_close": 14,
+          "avg_R_before_charges": 0.096,
+          "gross_inr": 1307.94,
+          "charges_inr": 1749.97,
+          "net_inr": -442.03,
+          "net_inr_hdfc_investright": -1581.08,
+          "net_per_trade": -15.79,
+          "win_rate_net": 0.393
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": false,
+        "steps": [
+          [
+            "entry",
+            1,
+            [
+              "BHARTIARTL  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b92101.60, low \u20b92078.40 (3 of 3 bars).",
+              "WAITING  last close \u20b92076.40 (10:10 bar), \u20b925.20 under the range high \u20b92101.60 (-1.20%)."
+            ]
+          ]
+        ]
+      }
+    },
+    "HINDUNILVR": {
+      "sanity": {
+        "meta_symbol": "HINDUNILVR.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4384,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 116,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 115,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 9,
+          "stop_hits": 10,
+          "at_close": 11,
+          "avg_R_before_charges": -0.109,
+          "gross_inr": -1633.55,
+          "charges_inr": 2548.3,
+          "net_inr": -4181.85,
+          "net_inr_hdfc_investright": -6856.28,
+          "net_per_trade": -139.39,
+          "win_rate_net": 0.333
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 5,
+          "stop_hits": 10,
+          "at_close": 15,
+          "avg_R_before_charges": 0.051,
+          "gross_inr": 749.97,
+          "charges_inr": 2549.14,
+          "net_inr": -1799.17,
+          "net_inr_hdfc_investright": -4474.89,
+          "net_per_trade": -59.97,
+          "win_rate_net": 0.333
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 5,
+          "stop_hits": 6,
+          "at_close": 19,
+          "avg_R_before_charges": -0.04,
+          "gross_inr": -587.66,
+          "charges_inr": 1717.59,
+          "net_inr": -2305.25,
+          "net_inr_hdfc_investright": -3616.8,
+          "net_per_trade": -76.84,
+          "win_rate_net": 0.333
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 2,
+          "stop_hits": 7,
+          "at_close": 21,
+          "avg_R_before_charges": -0.045,
+          "gross_inr": -655.37,
+          "charges_inr": 1717.78,
+          "net_inr": -2373.15,
+          "net_inr_hdfc_investright": -3684.09,
+          "net_per_trade": -79.1,
+          "win_rate_net": 0.3
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 27,
+          "target": 7,
+          "stop_hits": 8,
+          "at_close": 12,
+          "avg_R_before_charges": -0.099,
+          "gross_inr": -1325.22,
+          "charges_inr": 2204.0,
+          "net_inr": -3529.22,
+          "net_inr_hdfc_investright": -5747.87,
+          "net_per_trade": -130.71,
+          "win_rate_net": 0.333
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 27,
+          "target": 3,
+          "stop_hits": 8,
+          "at_close": 16,
+          "avg_R_before_charges": -0.001,
+          "gross_inr": -5.1,
+          "charges_inr": 2204.59,
+          "net_inr": -2209.69,
+          "net_inr_hdfc_investright": -4428.85,
+          "net_per_trade": -81.84,
+          "win_rate_net": 0.333
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 27,
+          "target": 2,
+          "stop_hits": 5,
+          "at_close": 20,
+          "avg_R_before_charges": -0.062,
+          "gross_inr": -855.66,
+          "charges_inr": 1476.69,
+          "net_inr": -2332.35,
+          "net_inr_hdfc_investright": -3504.07,
+          "net_per_trade": -86.38,
+          "win_rate_net": 0.333
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "HINDUNILVR  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b91973.90, low \u20b91954.40 (3 of 3 bars).",
+              "TRIGGERED 9:50 AM at \u20b91976.20: the 9:45 bar (bar 6) closed above the range high \u20b91973.90 (+0.12%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: HINDUNILVR long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b91,976.20 at 9:50 AM (bar 6)",
+              "  Stop          \u20b91,964.15  opening-range midpoint: (\u20b91,973.90 + \u20b91,954.40) / 2 = \u20b91964.15",
+              "  Target        \u20b92,000.30  2R (two times the risk)",
+              "  Risk a share  \u20b912.05 (0.61% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "HINDUNILVR buy, Friday 2026-11-06: entry 1976.20 at 9:50 AM (bar 6), stop 1964.15, target 2000.30 (2R, risk 12.05 a share).",
+              "10,000 replays of the rest of the session, 9:50 AM to 3:10 PM (64 five-minute bars), seed 19.",
+              "Each bar is drawn whole from HINDUNILVR's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   15.1 %",
+              "  stop first     51.3 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "HINDUNILVR buy, opening-range breakout, entry 1976.20 at 9:50 AM",
+              "Stop 1964.15: opening-range midpoint. Target 2000.30: 2R (two times the risk).",
+              "Sized at 1976.20 (the plan's entry). Risk 12.05 a share (entry 1976.20 minus stop 1964.15). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 12.05 risk a share                          41 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy HINDUNILVR 20 shares, entry",
+              "          entry 1976.20 (the plan's entry), stop 1964.15, target 2000.30: risk 12.05 a share",
+              "          max loss \u20b9282.85 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b960,476 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 20 HINDUNILVR, market, good for today",
+              "  stop-loss 1964.15",
+              "  take-profit 2000.30",
+              "  max loss about \u20b9282.85 if the stop fills at 1964.15 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on HINDUNILVR: 20 shares, bound by your max order (20 x 12.05 + charges = \u20b9282.85 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "BAJFINANCE": {
+      "sanity": {
+        "meta_symbol": "BAJFINANCE.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4388,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 112,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 111,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 15,
+          "stop_hits": 14,
+          "at_close": 5,
+          "avg_R_before_charges": 0.025,
+          "gross_inr": 441.39,
+          "charges_inr": 2510.25,
+          "net_inr": -2068.86,
+          "net_inr_hdfc_investright": -4068.78,
+          "net_per_trade": -60.85,
+          "win_rate_net": 0.471
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 8,
+          "stop_hits": 16,
+          "at_close": 10,
+          "avg_R_before_charges": 0.175,
+          "gross_inr": 2964.88,
+          "charges_inr": 2511.35,
+          "net_inr": 453.53,
+          "net_inr_hdfc_investright": -1547.26,
+          "net_per_trade": 13.34,
+          "win_rate_net": 0.412
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 9,
+          "stop_hits": 7,
+          "at_close": 18,
+          "avg_R_before_charges": 0.035,
+          "gross_inr": 583.4,
+          "charges_inr": 1685.86,
+          "net_inr": -1102.46,
+          "net_inr_hdfc_investright": -2274.83,
+          "net_per_trade": -32.43,
+          "win_rate_net": 0.471
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 4,
+          "stop_hits": 7,
+          "at_close": 23,
+          "avg_R_before_charges": 0.153,
+          "gross_inr": 2572.86,
+          "charges_inr": 1686.94,
+          "net_inr": 885.92,
+          "net_inr_hdfc_investright": -286.82,
+          "net_per_trade": 26.06,
+          "win_rate_net": 0.441
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 12,
+          "stop_hits": 13,
+          "at_close": 5,
+          "avg_R_before_charges": -0.008,
+          "gross_inr": -92.99,
+          "charges_inr": 2048.35,
+          "net_inr": -2141.34,
+          "net_inr_hdfc_investright": -3699.67,
+          "net_per_trade": -71.38,
+          "win_rate_net": 0.467
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 30,
+          "target": 4,
+          "stop_hits": 13,
+          "at_close": 13,
+          "avg_R_before_charges": 0.117,
+          "gross_inr": 1774.45,
+          "charges_inr": 2048.98,
+          "net_inr": -274.53,
+          "net_inr_hdfc_investright": -1833.72,
+          "net_per_trade": -9.15,
+          "win_rate_net": 0.433
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 30,
+          "target": 4,
+          "stop_hits": 5,
+          "at_close": 21,
+          "avg_R_before_charges": 0.114,
+          "gross_inr": 1684.63,
+          "charges_inr": 1324.49,
+          "net_inr": 360.14,
+          "net_inr_hdfc_investright": -682.82,
+          "net_per_trade": 12.0,
+          "win_rate_net": 0.5
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "BAJFINANCE  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b91051.85, low \u20b91045.00 (3 of 3 bars).",
+              "TRIGGERED 9:50 AM at \u20b91053.35: the 9:45 bar (bar 6) closed above the range high \u20b91051.85 (+0.14%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: BAJFINANCE long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b91,053.35 at 9:50 AM (bar 6)",
+              "  Stop          \u20b91,048.42  opening-range midpoint: (\u20b91,051.85 + \u20b91,045.00) / 2 = \u20b91048.425, rounded down",
+              "  Target        \u20b91,063.21  2R (two times the risk)",
+              "  Risk a share  \u20b94.93 (0.47% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "BAJFINANCE buy, Friday 2026-11-06: entry 1053.35 at 9:50 AM (bar 6), stop 1048.42, target 1063.21 (2R, risk 4.93 a share).",
+              "10,000 replays of the rest of the session, 9:50 AM to 3:10 PM (64 five-minute bars), seed 19.",
+              "Each bar is drawn whole from BAJFINANCE's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   28.7 %",
+              "  stop first     63.8 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "BAJFINANCE buy, opening-range breakout, entry 1053.35 at 9:50 AM",
+              "Stop 1048.42: opening-range midpoint. Target 1063.21: 2R (two times the risk).",
+              "Sized at 1053.35 (the plan's entry). Risk 4.93 a share (entry 1053.35 minus stop 1048.42). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 4.93 risk a share                          101 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy BAJFINANCE 37 shares, entry",
+              "          entry 1053.35 (the plan's entry), stop 1048.42, target 1063.21: risk 4.93 a share",
+              "          max loss \u20b9223.71 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b961,026.05 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 37 BAJFINANCE, market, good for today",
+              "  stop-loss 1048.42",
+              "  take-profit 1063.21",
+              "  max loss about \u20b9223.71 if the stop fills at 1048.42 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on BAJFINANCE: 37 shares, bound by your max order (37 x 4.93 + charges = \u20b9223.71 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "MARUTI": {
+      "sanity": {
+        "meta_symbol": "MARUTI.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4379,
+        "sessions": 60,
+        "full_sessions": 59,
+        "filled_bars": 117,
+        "short_sessions": [
+          "2026-10-15:71"
+        ],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 120,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 14,
+          "stop_hits": 16,
+          "at_close": 7,
+          "avg_R_before_charges": -0.027,
+          "gross_inr": -359.15,
+          "charges_inr": 3321.09,
+          "net_inr": -3680.24,
+          "net_inr_hdfc_investright": -7454.68,
+          "net_per_trade": -99.47,
+          "win_rate_net": 0.486
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 5,
+          "stop_hits": 19,
+          "at_close": 13,
+          "avg_R_before_charges": -0.098,
+          "gross_inr": -1612.68,
+          "charges_inr": 3320.72,
+          "net_inr": -4933.4,
+          "net_inr_hdfc_investright": -8707.11,
+          "net_per_trade": -133.34,
+          "win_rate_net": 0.405
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 6,
+          "stop_hits": 13,
+          "at_close": 18,
+          "avg_R_before_charges": -0.182,
+          "gross_inr": -3307.76,
+          "charges_inr": 2306.82,
+          "net_inr": -5614.58,
+          "net_inr_hdfc_investright": -7334.52,
+          "net_per_trade": -151.75,
+          "win_rate_net": 0.405
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 1,
+          "stop_hits": 14,
+          "at_close": 22,
+          "avg_R_before_charges": -0.235,
+          "gross_inr": -4310.73,
+          "charges_inr": 2306.56,
+          "net_inr": -6617.29,
+          "net_inr_hdfc_investright": -8336.62,
+          "net_per_trade": -178.85,
+          "win_rate_net": 0.378
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 36,
+          "target": 10,
+          "stop_hits": 17,
+          "at_close": 9,
+          "avg_R_before_charges": -0.2,
+          "gross_inr": -3292.67,
+          "charges_inr": 2934.86,
+          "net_inr": -6227.53,
+          "net_inr_hdfc_investright": -9182.65,
+          "net_per_trade": -172.99,
+          "win_rate_net": 0.389
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 36,
+          "target": 3,
+          "stop_hits": 18,
+          "at_close": 15,
+          "avg_R_before_charges": -0.263,
+          "gross_inr": -4393.19,
+          "charges_inr": 2934.41,
+          "net_inr": -7327.6,
+          "net_inr_hdfc_investright": -10282.21,
+          "net_per_trade": -203.54,
+          "win_rate_net": 0.306
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 59,
+          "trades": 36,
+          "target": 1,
+          "stop_hits": 11,
+          "at_close": 24,
+          "avg_R_before_charges": -0.25,
+          "gross_inr": -4346.48,
+          "charges_inr": 2035.55,
+          "net_inr": -6382.03,
+          "net_inr_hdfc_investright": -7789.98,
+          "net_per_trade": -177.28,
+          "win_rate_net": 0.306
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "MARUTI  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b912637.00, low \u20b912453.00 (3 of 3 bars).",
+              "TRIGGERED 9:50 AM at \u20b912670.00: the 9:45 bar (bar 6) closed above the range high \u20b912637.00 (+0.26%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: MARUTI long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b912,670.00 at 9:50 AM (bar 6)",
+              "  Stop          \u20b912,545.00  opening-range midpoint: (\u20b912,637.00 + \u20b912,453.00) / 2 = \u20b912545",
+              "  Target        \u20b912,920.00  2R (two times the risk)",
+              "  Risk a share  \u20b9125.00 (0.99% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "MARUTI buy, Friday 2026-11-06: entry 12670.00 at 9:50 AM (bar 6), stop 12545.00, target 12920.00 (2R, risk 125.00 a share).",
+              "10,000 replays of the rest of the session, 9:50 AM to 3:10 PM (64 five-minute bars), seed 19.",
+              "Each bar is drawn whole from MARUTI's own 5-min bars at the same time of day (+-2 bars) over its last 58 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   2.4 %",
+              "  stop first     39.7 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "MARUTI buy, opening-range breakout, entry 12670.00 at 9:50 AM",
+              "Stop 12545.00: opening-range midpoint. Target 12920.00: 2R (two times the risk).",
+              "Sized at 12670.00 (the plan's entry). Risk 125.00 a share (entry 12670.00 minus stop 12545.00). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 125.00 risk a share                          4 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy MARUTI 3 shares, entry",
+              "          entry 12670.00 (the plan's entry), stop 12545.00, target 12920.00: risk 125.00 a share",
+              "          max loss \u20b9415.16 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b961,990 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 3 MARUTI, market, good for today",
+              "  stop-loss 12545.00",
+              "  take-profit 12920.00",
+              "  max loss about \u20b9415.16 if the stop fills at 12545.00 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on MARUTI: 3 shares, bound by your max order (3 x 125.00 + charges = \u20b9415.16 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "M&M": {
+      "sanity": {
+        "meta_symbol": "M&M.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4383,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 117,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 116,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 12,
+          "stop_hits": 10,
+          "at_close": 12,
+          "avg_R_before_charges": 0.056,
+          "gross_inr": 930.89,
+          "charges_inr": 2534.76,
+          "net_inr": -1603.87,
+          "net_inr_hdfc_investright": -3737.7,
+          "net_per_trade": -47.17,
+          "win_rate_net": 0.471
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 4,
+          "stop_hits": 11,
+          "at_close": 19,
+          "avg_R_before_charges": 0.044,
+          "gross_inr": 737.77,
+          "charges_inr": 2534.74,
+          "net_inr": -1796.97,
+          "net_inr_hdfc_investright": -3930.61,
+          "net_per_trade": -52.85,
+          "win_rate_net": 0.412
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 4,
+          "stop_hits": 7,
+          "at_close": 23,
+          "avg_R_before_charges": -0.048,
+          "gross_inr": -840.1,
+          "charges_inr": 1715.15,
+          "net_inr": -2555.25,
+          "net_inr_hdfc_investright": -3734.97,
+          "net_per_trade": -75.15,
+          "win_rate_net": 0.441
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 34,
+          "target": 1,
+          "stop_hits": 7,
+          "at_close": 26,
+          "avg_R_before_charges": -0.01,
+          "gross_inr": -203.78,
+          "charges_inr": 1715.55,
+          "net_inr": -1919.33,
+          "net_inr_hdfc_investright": -3099.19,
+          "net_per_trade": -56.45,
+          "win_rate_net": 0.441
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 11,
+          "stop_hits": 10,
+          "at_close": 12,
+          "avg_R_before_charges": -0.002,
+          "gross_inr": -50.77,
+          "charges_inr": 2410.24,
+          "net_inr": -2461.01,
+          "net_inr_hdfc_investright": -4427.69,
+          "net_per_trade": -74.58,
+          "win_rate_net": 0.424
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 33,
+          "target": 4,
+          "stop_hits": 10,
+          "at_close": 19,
+          "avg_R_before_charges": 0.049,
+          "gross_inr": 773.75,
+          "charges_inr": 2410.52,
+          "net_inr": -1636.77,
+          "net_inr_hdfc_investright": -3603.86,
+          "net_per_trade": -49.6,
+          "win_rate_net": 0.394
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 33,
+          "target": 3,
+          "stop_hits": 7,
+          "at_close": 23,
+          "avg_R_before_charges": 0.007,
+          "gross_inr": 85.82,
+          "charges_inr": 1607.25,
+          "net_inr": -1521.43,
+          "net_inr_hdfc_investright": -2638.9,
+          "net_per_trade": -46.1,
+          "win_rate_net": 0.424
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "M&M  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b93226.50, low \u20b93133.90 (3 of 3 bars).",
+              "TRIGGERED 9:35 AM at \u20b93241.90: the 9:30 bar (bar 3) closed above the range high \u20b93226.50 (+0.48%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: M&M long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b93,241.90 at 9:35 AM (bar 3)",
+              "  Stop          \u20b93,180.20  opening-range midpoint: (\u20b93,226.50 + \u20b93,133.90) / 2 = \u20b93180.2",
+              "  Target        \u20b93,365.30  2R (two times the risk)",
+              "  Risk a share  \u20b961.70 (1.90% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "M&M buy, Friday 2026-11-06: entry 3241.90 at 9:35 AM (bar 3), stop 3180.20, target 3365.30 (2R, risk 61.70 a share).",
+              "10,000 replays of the rest of the session, 9:35 AM to 3:10 PM (67 five-minute bars), seed 19.",
+              "Each bar is drawn whole from M&M's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   0.2 %",
+              "  stop first     6.8 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "M&M buy, opening-range breakout, entry 3241.90 at 9:35 AM",
+              "Stop 3180.20: opening-range midpoint. Target 3365.30: 2R (two times the risk).",
+              "Sized at 3241.90 (the plan's entry). Risk 61.70 a share (entry 3241.90 minus stop 3180.20). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 61.70 risk a share                           8 shares  <- binds"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy M&M 7 shares, entry",
+              "          entry 3241.90 (the plan's entry), stop 3180.20, target 3365.30: risk 61.70 a share",
+              "          max loss \u20b9455.74 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b977,306.70 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 7 M&M, market, good for today",
+              "  stop-loss 3180.20",
+              "  take-profit 3365.30",
+              "  max loss about \u20b9455.74 if the stop fills at 3180.20 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on M&M: 7 shares, bound by your \u20b9500 max loss per trade (7 x 61.70 + charges = \u20b9455.74 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "SUNPHARMA": {
+      "sanity": {
+        "meta_symbol": "SUNPHARMA.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4379,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 121,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 120,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 31,
+          "target": 12,
+          "stop_hits": 13,
+          "at_close": 6,
+          "avg_R_before_charges": 0.029,
+          "gross_inr": 439.79,
+          "charges_inr": 2554.47,
+          "net_inr": -2114.68,
+          "net_inr_hdfc_investright": -4644.64,
+          "net_per_trade": -68.22,
+          "win_rate_net": 0.548
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 31,
+          "target": 3,
+          "stop_hits": 16,
+          "at_close": 12,
+          "avg_R_before_charges": -0.12,
+          "gross_inr": -1869.83,
+          "charges_inr": 2553.45,
+          "net_inr": -4423.28,
+          "net_inr_hdfc_investright": -6952.29,
+          "net_per_trade": -142.69,
+          "win_rate_net": 0.419
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 31,
+          "target": 7,
+          "stop_hits": 6,
+          "at_close": 18,
+          "avg_R_before_charges": 0.067,
+          "gross_inr": 1007.1,
+          "charges_inr": 1788.6,
+          "net_inr": -781.5,
+          "net_inr_hdfc_investright": -2002.7,
+          "net_per_trade": -25.21,
+          "win_rate_net": 0.516
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 31,
+          "target": 0,
+          "stop_hits": 6,
+          "at_close": 25,
+          "avg_R_before_charges": -0.045,
+          "gross_inr": -680.26,
+          "charges_inr": 1787.81,
+          "net_inr": -2468.07,
+          "net_inr_hdfc_investright": -3689.05,
+          "net_per_trade": -79.62,
+          "win_rate_net": 0.484
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 29,
+          "target": 9,
+          "stop_hits": 13,
+          "at_close": 7,
+          "avg_R_before_charges": -0.106,
+          "gross_inr": -1528.73,
+          "charges_inr": 2258.07,
+          "net_inr": -3786.8,
+          "net_inr_hdfc_investright": -5795.15,
+          "net_per_trade": -130.58,
+          "win_rate_net": 0.448
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 29,
+          "target": 2,
+          "stop_hits": 14,
+          "at_close": 13,
+          "avg_R_before_charges": -0.168,
+          "gross_inr": -2419.45,
+          "charges_inr": 2257.63,
+          "net_inr": -4677.08,
+          "net_inr_hdfc_investright": -6685.17,
+          "net_per_trade": -161.28,
+          "win_rate_net": 0.414
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 29,
+          "target": 1,
+          "stop_hits": 6,
+          "at_close": 22,
+          "avg_R_before_charges": -0.099,
+          "gross_inr": -1431.05,
+          "charges_inr": 1524.48,
+          "net_inr": -2955.53,
+          "net_inr_hdfc_investright": -3978.91,
+          "net_per_trade": -101.91,
+          "win_rate_net": 0.414
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "SUNPHARMA  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b91839.90, low \u20b91815.00 (3 of 3 bars).",
+              "TRIGGERED 9:40 AM at \u20b91845.60: the 9:35 bar (bar 4) closed above the range high \u20b91839.90 (+0.31%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: SUNPHARMA long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b91,845.60 at 9:40 AM (bar 4)",
+              "  Stop          \u20b91,827.45  opening-range midpoint: (\u20b91,839.90 + \u20b91,815.00) / 2 = \u20b91827.45",
+              "  Target        \u20b91,881.90  2R (two times the risk)",
+              "  Risk a share  \u20b918.15 (0.98% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "SUNPHARMA buy, Friday 2026-11-06: entry 1845.60 at 9:40 AM (bar 4), stop 1827.45, target 1881.90 (2R, risk 18.15 a share).",
+              "10,000 replays of the rest of the session, 9:40 AM to 3:10 PM (66 five-minute bars), seed 19.",
+              "Each bar is drawn whole from SUNPHARMA's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   4.2 %",
+              "  stop first     33.8 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "SUNPHARMA buy, opening-range breakout, entry 1845.60 at 9:40 AM",
+              "Stop 1827.45: opening-range midpoint. Target 1881.90: 2R (two times the risk).",
+              "Sized at 1845.60 (the plan's entry). Risk 18.15 a share (entry 1845.60 minus stop 1827.45). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 18.15 risk a share                          27 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy SUNPHARMA 21 shares, entry",
+              "          entry 1845.60 (the plan's entry), stop 1827.45, target 1881.90: risk 18.15 a share",
+              "          max loss \u20b9422.10 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b961,242.40 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 21 SUNPHARMA, market, good for today",
+              "  stop-loss 1827.45",
+              "  take-profit 1881.90",
+              "  max loss about \u20b9422.10 if the stop fills at 1827.45 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on SUNPHARMA: 21 shares, bound by your max order (21 x 18.15 + charges = \u20b9422.10 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "TITAN": {
+      "sanity": {
+        "meta_symbol": "TITAN.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4377,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 123,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 122,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 37,
+          "target": 19,
+          "stop_hits": 12,
+          "at_close": 6,
+          "avg_R_before_charges": 0.178,
+          "gross_inr": 3144.11,
+          "charges_inr": 3264.23,
+          "net_inr": -120.12,
+          "net_inr_hdfc_investright": -3726.84,
+          "net_per_trade": -3.25,
+          "win_rate_net": 0.568
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 37,
+          "target": 9,
+          "stop_hits": 15,
+          "at_close": 13,
+          "avg_R_before_charges": 0.241,
+          "gross_inr": 4241.1,
+          "charges_inr": 3264.73,
+          "net_inr": 976.37,
+          "net_inr_hdfc_investright": -2630.52,
+          "net_per_trade": 26.39,
+          "win_rate_net": 0.459
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 37,
+          "target": 14,
+          "stop_hits": 7,
+          "at_close": 16,
+          "avg_R_before_charges": 0.208,
+          "gross_inr": 3723.63,
+          "charges_inr": 2319.76,
+          "net_inr": 1403.87,
+          "net_inr_hdfc_investright": -138.97,
+          "net_per_trade": 37.94,
+          "win_rate_net": 0.595
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 37,
+          "target": 2,
+          "stop_hits": 8,
+          "at_close": 27,
+          "avg_R_before_charges": 0.169,
+          "gross_inr": 2952.65,
+          "charges_inr": 2319.49,
+          "net_inr": 633.16,
+          "net_inr_hdfc_investright": -909.14,
+          "net_per_trade": 17.11,
+          "win_rate_net": 0.514
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 35,
+          "target": 15,
+          "stop_hits": 10,
+          "at_close": 10,
+          "avg_R_before_charges": 0.105,
+          "gross_inr": 1792.78,
+          "charges_inr": 2760.21,
+          "net_inr": -967.43,
+          "net_inr_hdfc_investright": -3539.74,
+          "net_per_trade": -27.64,
+          "win_rate_net": 0.514
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 35,
+          "target": 4,
+          "stop_hits": 12,
+          "at_close": 19,
+          "avg_R_before_charges": 0.123,
+          "gross_inr": 2107.17,
+          "charges_inr": 2760.04,
+          "net_inr": -652.87,
+          "net_inr_hdfc_investright": -3225.44,
+          "net_per_trade": -18.65,
+          "win_rate_net": 0.457
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 35,
+          "target": 3,
+          "stop_hits": 6,
+          "at_close": 26,
+          "avg_R_before_charges": 0.025,
+          "gross_inr": 312.95,
+          "charges_inr": 1870.95,
+          "net_inr": -1558.0,
+          "net_inr_hdfc_investright": -2839.69,
+          "net_per_trade": -44.51,
+          "win_rate_net": 0.486
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "TITAN  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b94930.00, low \u20b94696.70 (3 of 3 bars).",
+              "TRIGGERED 9:35 AM at \u20b94945.10: the 9:30 bar (bar 3) closed above the range high \u20b94930.00 (+0.31%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: TITAN long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b94,945.10 at 9:35 AM (bar 3)",
+              "  Stop          \u20b94,813.35  opening-range midpoint: (\u20b94,930.00 + \u20b94,696.70) / 2 = \u20b94813.35",
+              "  Target        \u20b95,208.60  2R (two times the risk)",
+              "  Risk a share  \u20b9131.75 (2.66% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "TITAN buy, Friday 2026-11-06: entry 4945.10 at 9:35 AM (bar 3), stop 4813.35, target 5208.60 (2R, risk 131.75 a share).",
+              "10,000 replays of the rest of the session, 9:35 AM to 3:10 PM (67 five-minute bars), seed 19.",
+              "Each bar is drawn whole from TITAN's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   0.0 %",
+              "  stop first     0.3 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "TITAN buy, opening-range breakout, entry 4945.10 at 9:35 AM",
+              "Stop 4813.35: opening-range midpoint. Target 5208.60: 2R (two times the risk).",
+              "Sized at 4945.10 (the plan's entry). Risk 131.75 a share (entry 4945.10 minus stop 4813.35). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 131.75 risk a share                          3 shares  <- binds"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy TITAN 3 shares, entry",
+              "          entry 4945.10 (the plan's entry), stop 4813.35, target 5208.60: risk 131.75 a share",
+              "          max loss \u20b9410.76 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b985,164.70 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 3 TITAN, market, good for today",
+              "  stop-loss 4813.35",
+              "  take-profit 5208.60",
+              "  max loss about \u20b9410.76 if the stop fills at 4813.35 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on TITAN: 3 shares, bound by your \u20b9500 max loss per trade (3 x 131.75 + charges = \u20b9410.76 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "NTPC": {
+      "sanity": {
+        "meta_symbol": "NTPC.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4384,
+        "sessions": 60,
+        "full_sessions": 59,
+        "filled_bars": 112,
+        "short_sessions": [
+          "2026-10-15:71"
+        ],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 115,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 13,
+          "stop_hits": 22,
+          "at_close": 2,
+          "avg_R_before_charges": -0.239,
+          "gross_inr": -4416.43,
+          "charges_inr": 3237.55,
+          "net_inr": -7653.98,
+          "net_inr_hdfc_investright": -11049.93,
+          "net_per_trade": -206.86,
+          "win_rate_net": 0.378
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 4,
+          "stop_hits": 25,
+          "at_close": 8,
+          "avg_R_before_charges": -0.385,
+          "gross_inr": -7129.53,
+          "charges_inr": 3237.02,
+          "net_inr": -10366.55,
+          "net_inr_hdfc_investright": -13760.34,
+          "net_per_trade": -280.18,
+          "win_rate_net": 0.27
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 5,
+          "stop_hits": 10,
+          "at_close": 22,
+          "avg_R_before_charges": -0.201,
+          "gross_inr": -3716.38,
+          "charges_inr": 2311.72,
+          "net_inr": -6028.1,
+          "net_inr_hdfc_investright": -7572.16,
+          "net_per_trade": -162.92,
+          "win_rate_net": 0.378
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 37,
+          "target": 1,
+          "stop_hits": 10,
+          "at_close": 26,
+          "avg_R_before_charges": -0.198,
+          "gross_inr": -3655.76,
+          "charges_inr": 2311.93,
+          "net_inr": -5967.69,
+          "net_inr_hdfc_investright": -7511.57,
+          "net_per_trade": -161.29,
+          "win_rate_net": 0.351
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 34,
+          "target": 11,
+          "stop_hits": 15,
+          "at_close": 8,
+          "avg_R_before_charges": -0.093,
+          "gross_inr": -1588.26,
+          "charges_inr": 2912.65,
+          "net_inr": -4500.91,
+          "net_inr_hdfc_investright": -7421.55,
+          "net_per_trade": -132.38,
+          "win_rate_net": 0.441
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 34,
+          "target": 3,
+          "stop_hits": 18,
+          "at_close": 13,
+          "avg_R_before_charges": -0.241,
+          "gross_inr": -4112.56,
+          "charges_inr": 2912.04,
+          "net_inr": -7024.6,
+          "net_inr_hdfc_investright": -9943.34,
+          "net_per_trade": -206.61,
+          "win_rate_net": 0.353
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 59,
+          "trades": 34,
+          "target": 1,
+          "stop_hits": 6,
+          "at_close": 27,
+          "avg_R_before_charges": -0.123,
+          "gross_inr": -2089.76,
+          "charges_inr": 1997.59,
+          "net_inr": -4087.35,
+          "net_inr_hdfc_investright": -5486.64,
+          "net_per_trade": -120.22,
+          "win_rate_net": 0.412
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "NTPC  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b9312.75, low \u20b9309.25 (3 of 3 bars).",
+              "TRIGGERED 9:50 AM at \u20b9314.55: the 9:45 bar (bar 6) closed above the range high \u20b9312.75 (+0.58%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: NTPC long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b9314.55 at 9:50 AM (bar 6)",
+              "  Stop          \u20b9311.00  opening-range midpoint: (\u20b9312.75 + \u20b9309.25) / 2 = \u20b9311",
+              "  Target        \u20b9321.65  2R (two times the risk)",
+              "  Risk a share  \u20b93.55 (1.13% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "NTPC buy, Friday 2026-11-06: entry 314.55 at 9:50 AM (bar 6), stop 311.00, target 321.65 (2R, risk 3.55 a share).",
+              "10,000 replays of the rest of the session, 9:50 AM to 3:10 PM (64 five-minute bars), seed 19.",
+              "Each bar is drawn whole from NTPC's own 5-min bars at the same time of day (+-2 bars) over its last 58 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   1.9 %",
+              "  stop first     27.2 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "NTPC buy, opening-range breakout, entry 314.55 at 9:50 AM",
+              "Stop 311.00: opening-range midpoint. Target 321.65: 2R (two times the risk).",
+              "Sized at 314.55 (the plan's entry). Risk 3.55 a share (entry 314.55 minus stop 311.00). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 3.55 risk a share                          140 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy NTPC 127 shares, entry",
+              "          entry 314.55 (the plan's entry), stop 311.00, target 321.65: risk 3.55 a share",
+              "          max loss \u20b9493.02 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b960,052.15 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 127 NTPC, market, good for today",
+              "  stop-loss 311.00",
+              "  take-profit 321.65",
+              "  max loss about \u20b9493.02 if the stop fills at 311.00 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on NTPC: 127 shares, bound by your max order (127 x 3.55 + charges = \u20b9493.02 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "BAJAJ-AUTO": {
+      "sanity": {
+        "meta_symbol": "BAJAJ-AUTO.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4374,
+        "sessions": 60,
+        "full_sessions": 60,
+        "filled_bars": 126,
+        "short_sessions": [],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 125,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 29,
+          "target": 12,
+          "stop_hits": 9,
+          "at_close": 8,
+          "avg_R_before_charges": 0.146,
+          "gross_inr": 1981.48,
+          "charges_inr": 2394.87,
+          "net_inr": -413.39,
+          "net_inr_hdfc_investright": -2959.46,
+          "net_per_trade": -14.25,
+          "win_rate_net": 0.586
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 29,
+          "target": 6,
+          "stop_hits": 11,
+          "at_close": 12,
+          "avg_R_before_charges": 0.226,
+          "gross_inr": 3130.6,
+          "charges_inr": 2395.05,
+          "net_inr": 735.55,
+          "net_inr_hdfc_investright": -1811.27,
+          "net_per_trade": 25.36,
+          "win_rate_net": 0.483
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 29,
+          "target": 7,
+          "stop_hits": 6,
+          "at_close": 16,
+          "avg_R_before_charges": 0.053,
+          "gross_inr": 770.92,
+          "charges_inr": 1655.17,
+          "net_inr": -884.25,
+          "net_inr_hdfc_investright": -2186.6,
+          "net_per_trade": -30.49,
+          "win_rate_net": 0.517
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 29,
+          "target": 2,
+          "stop_hits": 6,
+          "at_close": 21,
+          "avg_R_before_charges": 0.065,
+          "gross_inr": 986.82,
+          "charges_inr": 1655.42,
+          "net_inr": -668.6,
+          "net_inr_hdfc_investright": -1970.6,
+          "net_per_trade": -23.06,
+          "win_rate_net": 0.483
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 60,
+          "trades": 28,
+          "target": 9,
+          "stop_hits": 8,
+          "at_close": 11,
+          "avg_R_before_charges": 0.126,
+          "gross_inr": 1610.53,
+          "charges_inr": 2129.47,
+          "net_inr": -518.94,
+          "net_inr_hdfc_investright": -2531.05,
+          "net_per_trade": -18.53,
+          "win_rate_net": 0.607
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 60,
+          "trades": 28,
+          "target": 2,
+          "stop_hits": 10,
+          "at_close": 16,
+          "avg_R_before_charges": 0.005,
+          "gross_inr": -43.35,
+          "charges_inr": 2128.86,
+          "net_inr": -2172.21,
+          "net_inr_hdfc_investright": -4183.43,
+          "net_per_trade": -77.58,
+          "win_rate_net": 0.464
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 60,
+          "trades": 28,
+          "target": 2,
+          "stop_hits": 5,
+          "at_close": 21,
+          "avg_R_before_charges": -0.0,
+          "gross_inr": -111.35,
+          "charges_inr": 1407.99,
+          "net_inr": -1519.34,
+          "net_inr_hdfc_investright": -2607.58,
+          "net_per_trade": -54.26,
+          "win_rate_net": 0.464
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "BAJAJ-AUTO  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b910740.00, low \u20b910618.00 (3 of 3 bars).",
+              "TRIGGERED 9:45 AM at \u20b910768.00: the 9:40 bar (bar 5) closed above the range high \u20b910740.00 (+0.26%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: BAJAJ-AUTO long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b910,768.00 at 9:45 AM (bar 5)",
+              "  Stop          \u20b910,679.00  opening-range midpoint: (\u20b910,740.00 + \u20b910,618.00) / 2 = \u20b910679",
+              "  Target        \u20b910,946.00  2R (two times the risk)",
+              "  Risk a share  \u20b989.00 (0.83% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "BAJAJ-AUTO buy, Friday 2026-11-06: entry 10768.00 at 9:45 AM (bar 5), stop 10679.00, target 10946.00 (2R, risk 89.00 a share).",
+              "10,000 replays of the rest of the session, 9:45 AM to 3:10 PM (65 five-minute bars), seed 19.",
+              "Each bar is drawn whole from BAJAJ-AUTO's own 5-min bars at the same time of day (+-2 bars) over its last 59 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   9.9 %",
+              "  stop first     44.2 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "BAJAJ-AUTO buy, opening-range breakout, entry 10768.00 at 9:45 AM",
+              "Stop 10679.00: opening-range midpoint. Target 10946.00: 2R (two times the risk).",
+              "Sized at 10768.00 (the plan's entry). Risk 89.00 a share (entry 10768.00 minus stop 10679.00). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 89.00 risk a share                           5 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy BAJAJ-AUTO 3 shares, entry",
+              "          entry 10768.00 (the plan's entry), stop 10679.00, target 10946.00: risk 89.00 a share",
+              "          max loss \u20b9301.16 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b967,696 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 3 BAJAJ-AUTO, market, good for today",
+              "  stop-loss 10679.00",
+              "  take-profit 10946.00",
+              "  max loss about \u20b9301.16 if the stop fills at 10679.00 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on BAJAJ-AUTO: 3 shares, bound by your max order (3 x 89.00 + charges = \u20b9301.16 at the stop)"
+            ]
+          ]
+        ]
+      }
+    },
+    "ULTRACEMCO": {
+      "sanity": {
+        "meta_symbol": "ULTRACEMCO.NS",
+        "currency": "INR",
+        "tz": "Asia/Kolkata",
+        "bars": 4364,
+        "sessions": 60,
+        "full_sessions": 59,
+        "filled_bars": 132,
+        "short_sessions": [
+          "2026-10-15:71"
+        ],
+        "first_bar": "09:15",
+        "last_bar": "15:25",
+        "dropped": {
+          "no_price": 135,
+          "off_grid": 0,
+          "not_complete": 1,
+          "outside_hours": 0
+        },
+        "last_day": "2026-11-06"
+      },
+      "backtest": [
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 38,
+          "target": 14,
+          "stop_hits": 17,
+          "at_close": 7,
+          "avg_R_before_charges": -0.091,
+          "gross_inr": -1601.99,
+          "charges_inr": 3334.65,
+          "net_inr": -4936.64,
+          "net_inr_hdfc_investright": -8444.88,
+          "net_per_trade": -129.91,
+          "win_rate_net": 0.447
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 38,
+          "target": 8,
+          "stop_hits": 19,
+          "at_close": 11,
+          "avg_R_before_charges": 0.005,
+          "gross_inr": 69.76,
+          "charges_inr": 3335.17,
+          "net_inr": -3265.41,
+          "net_inr_hdfc_investright": -6774.59,
+          "net_per_trade": -85.93,
+          "win_rate_net": 0.395
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 38,
+          "target": 13,
+          "stop_hits": 7,
+          "at_close": 18,
+          "avg_R_before_charges": 0.159,
+          "gross_inr": 2712.14,
+          "charges_inr": 2316.6,
+          "net_inr": 395.54,
+          "net_inr_hdfc_investright": -1162.94,
+          "net_per_trade": 10.41,
+          "win_rate_net": 0.579
+        },
+        {
+          "or_minutes": 15,
+          "stop": "or_low",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 38,
+          "target": 2,
+          "stop_hits": 8,
+          "at_close": 28,
+          "avg_R_before_charges": 0.191,
+          "gross_inr": 3298.67,
+          "charges_inr": 2316.52,
+          "net_inr": 982.15,
+          "net_inr_hdfc_investright": -577.29,
+          "net_per_trade": 25.85,
+          "win_rate_net": 0.553
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 1.0,
+          "sessions": 59,
+          "trades": 38,
+          "target": 13,
+          "stop_hits": 18,
+          "at_close": 7,
+          "avg_R_before_charges": -0.143,
+          "gross_inr": -2508.6,
+          "charges_inr": 3116.89,
+          "net_inr": -5625.49,
+          "net_inr_hdfc_investright": -8538.26,
+          "net_per_trade": -148.04,
+          "win_rate_net": 0.421
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_mid",
+          "target_R": 2.0,
+          "sessions": 59,
+          "trades": 38,
+          "target": 5,
+          "stop_hits": 20,
+          "at_close": 13,
+          "avg_R_before_charges": -0.147,
+          "gross_inr": -2626.68,
+          "charges_inr": 3116.89,
+          "net_inr": -5743.57,
+          "net_inr_hdfc_investright": -8656.23,
+          "net_per_trade": -151.15,
+          "win_rate_net": 0.368
+        },
+        {
+          "or_minutes": 30,
+          "stop": "or_low",
+          "target_R": 1.5,
+          "sessions": 59,
+          "trades": 38,
+          "target": 2,
+          "stop_hits": 7,
+          "at_close": 29,
+          "avg_R_before_charges": 0.069,
+          "gross_inr": 1419.92,
+          "charges_inr": 2109.78,
+          "net_inr": -689.86,
+          "net_inr_hdfc_investright": -2092.15,
+          "net_per_trade": -18.15,
+          "win_rate_net": 0.526
+        }
+      ],
+      "pipeline": {
+        "triggered_by_10_15": true,
+        "steps": [
+          [
+            "entry",
+            0,
+            [
+              "ULTRACEMCO  Fri 2026-11-06 10:15 IST  opening-range breakout (15-minute range) on 5-minute bars (Yahoo, free, can lag)",
+              "Opening range 9:15-9:30: high \u20b912250.00, low \u20b912103.00 (3 of 3 bars).",
+              "TRIGGERED 9:50 AM at \u20b912253.00: the 9:45 bar (bar 6) closed above the range high \u20b912250.00 (+0.02%)."
+            ]
+          ],
+          [
+            "exit",
+            0,
+            [
+              "Exit plan: ULTRACEMCO long, Fri 2026-11-06, opening-range breakout on 5-minute bars",
+              "  Entry         \u20b912,253.00 at 9:50 AM (bar 6)",
+              "  Stop          \u20b912,176.50  opening-range midpoint: (\u20b912,250.00 + \u20b912,103.00) / 2 = \u20b912176.5",
+              "  Target        \u20b912,406.00  2R (two times the risk)",
+              "  Risk a share  \u20b976.50 (0.62% of the entry)",
+              "  Reward:risk   2.0"
+            ]
+          ],
+          [
+            "timemachine",
+            0,
+            [
+              "ULTRACEMCO buy, Friday 2026-11-06: entry 12253.00 at 9:50 AM (bar 6), stop 12176.50, target 12406.00 (2R, risk 76.50 a share).",
+              "10,000 replays of the rest of the session, 9:50 AM to 3:10 PM (64 five-minute bars), seed 19.",
+              "Each bar is drawn whole from ULTRACEMCO's own 5-min bars at the same time of day (+-2 bars) over its last 58 full sessions (2026-08-12 to 2026-11-05).",
+              "",
+              "  target first   18.9 %",
+              "  stop first     48.0 %"
+            ]
+          ],
+          [
+            "budget",
+            0,
+            [
+              "ULTRACEMCO buy, opening-range breakout, entry 12253.00 at 9:50 AM",
+              "Stop 12176.50: opening-range midpoint. Target 12406.00: 2R (two times the risk).",
+              "Sized at 12253.00 (the plan's entry). Risk 76.50 a share (entry 12253.00 minus stop 12176.50). Reward:risk 2.00.",
+              "",
+              "Limits (whole shares; the smallest one wins):",
+              "  max loss      \u20b9500 max loss / 76.50 risk a share                           6 shares"
+            ]
+          ],
+          [
+            "risk",
+            0,
+            [
+              "PASS  #1 buy ULTRACEMCO 3 shares, entry",
+              "          entry 12253.00 (the plan's entry), stop 12176.50, target 12406.00: risk 76.50 a share",
+              "          max loss \u20b9268.42 (limit \u20b9500), reward:risk 2.00 (min 1)",
+              "          today before this: 0 of 3 trades, \u20b90 of \u20b91,500 daily loss",
+              "",
+              "1 passed, 0 blocked at 2026-11-06 10:15 India (IST). Cash after the passed orders: \u20b963,241 (dry run account)."
+            ]
+          ],
+          [
+            "ticket",
+            0,
+            [
+              "ORDER 1 of 1, DRY RUN (you place it yourself), Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+              "  BUY 3 ULTRACEMCO, market, good for today",
+              "  stop-loss 12176.50",
+              "  take-profit 12406.00",
+              "  max loss about \u20b9268.42 if the stop fills at 12176.50 (it can fill worse in a fast market)",
+              "  why: opening-range breakout on ULTRACEMCO: 3 shares, bound by your max order (3 x 76.50 + charges = \u20b9268.42 at the stop)"
+            ]
+          ]
+        ]
+      }
+    }
+  },
+  "live": {
+    "nse_universe": {
+      "exit": 0,
+      "out": [
+        "NSE equity list: 2,630 rows.",
+        "Kept 2,390 NSE stocks in the EQ series (intraday-eligible by series).",
+        "Dropped: 207 series BE, 33 series BZ.",
+        "Wrote trader/universe.txt (one SYMBOL|Name a line)."
+      ]
+    },
+    "news": {
+      "exit": 0,
+      "out": [
+        "items by source (7 days): {'NSE': 2}",
+        "notes: none"
+      ]
+    }
+  },
+  "backtest_total": [
+    {
+      "or_minutes": 15,
+      "stop": "or_mid",
+      "target_R": 1.0,
+      "trades": 681,
+      "net": -65219.61,
+      "charges": 57966.14,
+      "gross": -7253.47,
+      "wins": 318,
+      "net_hdfc": -125359.04
+    },
+    {
+      "or_minutes": 15,
+      "stop": "or_mid",
+      "target_R": 2.0,
+      "trades": 681,
+      "net": -59831.19,
+      "charges": 57968.08,
+      "gross": -1863.11,
+      "wins": 262,
+      "net_hdfc": -119972.76
+    },
+    {
+      "or_minutes": 15,
+      "stop": "or_low",
+      "target_R": 1.0,
+      "trades": 681,
+      "net": -45756.03,
+      "charges": 40576.4,
+      "gross": -5179.63,
+      "wins": 313,
+      "net_hdfc": -74075.11
+    },
+    {
+      "or_minutes": 15,
+      "stop": "or_low",
+      "target_R": 2.0,
+      "trades": 681,
+      "net": -40908.75,
+      "charges": 40579.11,
+      "gross": -329.64,
+      "wins": 292,
+      "net_hdfc": -69228.62
+    },
+    {
+      "or_minutes": 30,
+      "stop": "or_mid",
+      "target_R": 1.0,
+      "trades": 628,
+      "net": -57690.44,
+      "charges": 50378.23,
+      "gross": -7312.21,
+      "wins": 286,
+      "net_hdfc": -105652.15
+    },
+    {
+      "or_minutes": 30,
+      "stop": "or_mid",
+      "target_R": 2.0,
+      "trades": 628,
+      "net": -50786.09,
+      "charges": 50381.29,
+      "gross": -404.8,
+      "wins": 247,
+      "net_hdfc": -98749.71
+    },
+    {
+      "or_minutes": 30,
+      "stop": "or_low",
+      "target_R": 1.5,
+      "trades": 628,
+      "net": -38286.8,
+      "charges": 34261.42,
+      "gross": -4025.38,
+      "wins": 269,
+      "net_hdfc": -62460.45
+    }
+  ]
+}
