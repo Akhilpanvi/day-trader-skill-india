@@ -522,7 +522,20 @@ def session_bars(series, day, cutoff):
                    "h": None if not hs or hs[i] is None else float(hs[i]),
                    "l": None if not ls or ls[i] is None else float(ls[i]),
                    "v": (v[i] or 0) if v else 0}
-    return [out[k] for k in sorted(out)]
+    bars = [out[k] for k in sorted(out)]
+    if not bars or bars[0]["start"] != slot(day, 0):
+        return bars                  # no 9:15 bar: no opening range, nothing to fill from
+    # ponytail: Yahoo's NSE 5-min data has ~2 empty bars a session; fill each flat at the previous
+    # close (volume 0) so one empty bar doesn't make the chart unusable. It can hide a wick.
+    filled, k = [], 0
+    for b in bars:
+        while b["start"] > slot(day, k):
+            p = filled[-1]
+            filled.append({"start": slot(day, k), "c": p["c"], "h": p["c"], "l": p["c"], "v": 0, "filled": True})
+            k += 1
+        filled.append(b)
+        k += 1
+    return filled
 
 
 def usable(bars, day, cutoff, n_range):

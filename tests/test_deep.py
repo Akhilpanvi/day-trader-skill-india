@@ -422,3 +422,64 @@ class Scenarios(Pipelines):
         self.assertEqual(syms, ["20MICRONS", "BAJAJ-AUTO", "M&M"])
         self.assertIn("1 series BE", out)
         self.assertIn("1 series BZ", out)
+
+
+class RealDataShape(unittest.TestCase):
+    """Yahoo's real NSE 5-min data has about 2 empty bars a session (found by the real-data check)."""
+
+    def sessions(self, nulls):
+        tm = TOOLS["tm"]
+        text = json.dumps(make_demo_fixture.build(nulls=nulls))
+        meta, bars, dropped = tm.parse_bars(tm.chart_result(text, "DEMO"), dt.datetime(2026, 11, 7))
+        full, short = tm.full_sessions(tm.split_sessions(bars), "9999-12-31")
+        return full, short, dropped
+
+    def test_two_empty_bars_still_full(self):
+        full, short, dropped = self.sessions(2)
+        self.assertGreater(dropped["no_price"], 100)
+        self.assertEqual((len(full), len(short)), (61, 0))
+        for d, D in full:
+            self.assertEqual([b["slot"] for b in D], list(range(75)))
+            for i, b in enumerate(D):
+                if b.get("filled"):
+                    self.assertEqual((b["o"], b["h"], b["l"], b["c"], b["v"]), (D[i - 1]["c"],) * 4 + (0,))
+
+    def test_many_empty_bars_is_short(self):
+        full, short, _ = self.sessions(5)
+        self.assertEqual(len(full), 0)
+
+    def test_history_trades_with_gaps(self):
+        tm = TOOLS["tm"]
+        full, _, _ = self.sessions(2)
+        h = tm.history_replay(full, {"setup": "orb", "or_minutes": 15, "stop_rule": "or_mid", "target_r": 2.0}, 70)
+        self.assertGreater(h["triggered"], 30)
+
+    def test_scanner_usable_with_gaps(self):
+        scan = TOOLS["scan"]
+        doc = make_demo_fixture.build(nulls=2)
+        series = scan.parse_chart(doc, "DEMO")
+        day = dt.date(2026, 11, 5)
+        cutoff = dt.datetime(2026, 11, 5, 15, 30)
+        bars = scan.session_bars(series, day, cutoff)
+        self.assertEqual(len(bars), 75)
+        self.assertTrue(scan.usable(bars, day, cutoff, 3))
+
+    def test_pipeline_with_gaps(self):
+        d = tempfile.mkdtemp()
+        try:
+            os.makedirs(os.path.join(d, "trader"))
+            shutil.copy(os.path.join(ROOT, "trader-budget", "config.example.json"), os.path.join(d, "trader", "config.json"))
+            chart = os.path.join(d, "DEMO.json")
+            with open(chart, "w") as fh:
+                json.dump(make_demo_fixture.build(nulls=2), fh)
+            run = lambda *a: subprocess.run([sys.executable, "-I"] + [os.path.join(ROOT, a[0])] + list(a[1:]),
+                                            cwd=d, capture_output=True, text=True)
+            now = "2026-11-06 09:40"
+            self.assertIn("TRIGGERED", run("trader-entry/entry.py", "check", "DEMO", "--setup", "orb", "--now", now,
+                                           "--offline", chart, "--write").stdout)
+            run("trader-exit/exit.py", "plan", "--now", now, "--write")
+            p = run("trader-timemachine/timemachine.py", "run", "--offline", chart, "--now", now)
+            self.assertEqual(p.returncode, 0, p.stdout + p.stderr)
+            self.assertIn("last 60 full sessions", p.stdout)
+        finally:
+            shutil.rmtree(d)

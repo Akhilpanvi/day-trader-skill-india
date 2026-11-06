@@ -54,9 +54,10 @@ def sanity(sym, text):
     meta, bars, dropped = tm.parse_bars(res, now)
     days = tm.split_sessions(bars)
     full, short = tm.full_sessions(days, "9999-12-31")
+    filled = sum(1 for _, D in full for b in D if b.get("filled"))
     starts = sorted({b["start"] for b in bars})
     return {"meta_symbol": meta.get("symbol"), "currency": meta.get("currency"), "tz": meta.get("exchangeTimezoneName"),
-            "bars": len(bars), "sessions": len(days), "full_sessions": len(full),
+            "bars": len(bars), "sessions": len(days), "full_sessions": len(full), "filled_bars": filled,
             "short_sessions": [s["date"] + ":" + str(s["bars"]) for s in short][-5:],
             "first_bar": starts[0] if starts else None, "last_bar": starts[-1] if starts else None,
             "dropped": dropped, "last_day": max(days) if days else None}, full
@@ -123,9 +124,18 @@ def live_checks():
     res = {}
     code, out = run(work, "trader-scanner/scan.py", "universe", timeout=120)
     res["nse_universe"] = {"exit": code, "out": out.splitlines()[:4]}
-    code, out = run(work, "trader-news/news.py", "--tickers", "RELIANCE", "INFY", "--no-moves", "--dry-run", "--hours", "72",
-                    timeout=180)
-    res["news"] = {"exit": code, "out": out.splitlines()[:12]}
+    code, out = run(work, "trader-news/news.py", "--tickers", "RELIANCE", "INFY", "HDFCBANK", "TCS", "--no-moves",
+                    "--dry-run", "--all", "--hours", "168", "--universe", os.path.join(work, "trader", "universe.txt"),
+                    "--json", timeout=180)
+    try:
+        doc = json.loads(out)
+        by = {}
+        for it in doc["items"]:
+            by[it["source"]] = by.get(it["source"], 0) + 1
+        res["news"] = {"exit": code, "out": ["items by source (7 days): %s" % (by or "none"),
+                                             "notes: %s" % ("; ".join(doc["notes"]) or "none")]}
+    except ValueError:
+        res["news"] = {"exit": code, "out": out.splitlines()[:6]}
     return res
 
 
@@ -176,11 +186,11 @@ def main(argv):
           "## Live NSE checks", ""]
     for k, v in summary["live"].items():
         md.append("- **%s**: exit %s — %s" % (k, v["exit"], " / ".join(v["out"][:3])))
-    md += ["", "## Data sanity", "", "| symbol | bars | sessions (full) | first-last bar IST | short sessions | error |",
-           "| --- | --- | --- | --- | --- | --- |"]
+    md += ["", "## Data sanity", "", "| symbol | bars | sessions (full) | empty bars filled | first-last bar IST | short sessions | error |",
+           "| --- | --- | --- | --- | --- | --- | --- |"]
     for s, e in summary["symbols"].items():
         z = e.get("sanity") or {}
-        md.append("| %s | %s | %s (%s) | %s-%s | %s | %s |" % (s, z.get("bars"), z.get("sessions"), z.get("full_sessions"),
+        md.append("| %s | %s | %s (%s) | %s | %s-%s | %s | %s |" % (s, z.get("bars"), z.get("sessions"), z.get("full_sessions"), z.get("filled_bars"),
                   z.get("first_bar"), z.get("last_bar"), ", ".join(z.get("short_sessions") or []) or "-", e.get("error", "")))
     md += ["", "## Backtest, all symbols together", "",
            "| OR | stop | target | trades | gross ₹ | charges ₹ | net ₹ | net win rate |", "| --- | --- | --- | --- | --- | --- | --- | --- |"]

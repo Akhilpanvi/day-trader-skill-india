@@ -86,6 +86,7 @@ SESSION_BARS = 75    # 9:15 to 15:30 in 5-minute bars
 OPEN_MIN = 9 * 60 + 15
 CLOSE_MIN = 15 * 60 + 30
 MIN_SESSIONS = 20
+MAX_FILL = 3       # empty bars a session may have and still count as full (filled flat)
 SAMPLE_PATHS = 160
 BAND_PATHS = 2000
 BAND_Q = (0.05, 0.25, 0.5, 0.75, 0.95)
@@ -317,7 +318,13 @@ def full_sessions(days, before):
         if d >= before:
             continue
         s = days[d]
-        if len(s) == SESSION_BARS:
+        missing = [i for i in range(SESSION_BARS) if i not in s]
+        if len(missing) <= MAX_FILL and 0 not in missing:
+            # ponytail: Yahoo's NSE 5-min data has ~2 empty bars a session; fill each flat at the
+            # previous close (volume 0). It can hide a wick inside that bar; more than MAX_FILL = short.
+            for i in missing:
+                p = s[i - 1]
+                s[i] = dict(p, slot=i, start=clock24(OPEN_MIN + 5 * i), o=p["c"], h=p["c"], l=p["c"], v=0, filled=True)
             full.append((d, [s[i] for i in range(SESSION_BARS)]))
         else:
             short.append({"date": d, "bars": len(s)})
@@ -331,8 +338,12 @@ def build_pool(sessions):
     pool = [[] for _ in range(SESSION_BARS)]
     for _, D in sessions:
         for i in range(1, SESSION_BARS):
+            if D[i].get("filled"):
+                continue             # a filled-in empty bar is not a real move: keep it out of the replays
             pc = D[i - 1]["c"]
             pool[i].append((D[i]["o"] / pc, D[i]["h"] / pc, D[i]["l"] / pc, D[i]["c"] / pc))
+    for i in range(1, SESSION_BARS):
+        pool[i] = pool[i] or [(1.0, 1.0, 1.0, 1.0)]   # every past bar here was filled: a flat bar
     return pool
 
 

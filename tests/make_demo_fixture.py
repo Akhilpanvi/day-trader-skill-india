@@ -20,7 +20,8 @@ def sessions(last, n):
     return out[::-1]
 
 
-def build(seed=7, symbol="DEMO"):
+def build(seed=7, symbol="DEMO", nulls=0):
+    """nulls: empty (null) bars a session, the way Yahoo's real NSE data has about 2."""
     rnd = random.Random(seed)
     days = sessions(dt.date(2026, 11, 6), 61)
     ts, o, h, l, c, v = [], [], [], [], [], []
@@ -46,6 +47,14 @@ def build(seed=7, symbol="DEMO"):
             ts.append(int((start - IST - dt.datetime(1970, 1, 1)).total_seconds()))
             o.append(round(op, 2)); h.append(round(hi, 2)); l.append(round(lo, 2)); c.append(round(cl, 2))
             v.append(int(rnd.uniform(40000, 120000) * (2.5 if b < 3 else 1)))
+    if nulls:
+        gap = random.Random(seed + 1)
+        for k in range(len(days)):
+            for b in gap.sample(range(1, 75), nulls):
+                if k == len(days) - 1 and b < 6:
+                    continue                      # keep the demo breakout bars on the last day
+                i = 75 * k + b
+                o[i] = h[i] = l[i] = c[i] = v[i] = None
     meta = {"currency": "INR", "symbol": symbol + ".NS", "exchangeName": "NSI", "instrumentType": "EQUITY",
             "gmtoffset": 19800, "timezone": "IST", "exchangeTimezoneName": "Asia/Kolkata",
             "regularMarketPrice": c[-1], "chartPreviousClose": c[-76], "previousClose": c[-76],
