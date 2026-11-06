@@ -5,7 +5,9 @@ This tool never talks to a broker and never places anything. It does its
 work around the one moment that matters, your yes:
 
   show      renders each proposed order as a plain-English ticket plus the
-            exact JSON Claude will send to Alpaca's place_stock_order tool.
+            exact order Claude maps to your broker's order tool (Upstox, Dhan,
+            Groww; Zerodha's connector only takes GTT orders). With "dry_run":
+            true (the default) Claude never calls the broker: you place it.
             A bracket order shows its stop-loss, take-profit and the max loss
             at the stop. An order is READY only if trader-risk passed THIS
             exact order today (matched by fingerprint) and nobody has decided
@@ -25,12 +27,12 @@ work around the one moment that matters, your yes:
     python3 ticket.py show --index 1 --json   # one ticket as JSON
     python3 ticket.py approve --index 1 --reply "yes"
     python3 ticket.py result --index 1 --status placed --broker-id 61e6...
-    python3 ticket.py fill --symbol TSLA --side buy --qty 8 --price 364.20
-    python3 ticket.py flatten --symbol TSLA --qty 8
+    python3 ticket.py fill --symbol RELIANCE --side buy --qty 8 --price 364.20
+    python3 ticket.py flatten --symbol RELIANCE --qty 8
     python3 ticket.py log
 
 Everything is written to trader/state/broker.json (append only). Dates are
-New York dates; --now "2026-10-19 10:15" pins the clock.
+India (IST) dates; --now "2026-10-19 10:15" pins the clock.
 """
 
 import argparse
@@ -41,7 +43,7 @@ import os
 import re
 import sys
 
-ALPACA_FIELDS = ("symbol", "side", "qty", "notional", "type", "time_in_force", "limit_price",
+ORDER_FIELDS = ("symbol", "exchange", "product", "side", "qty", "notional", "type", "time_in_force", "limit_price",
                  "stop_price", "trail_price", "trail_percent", "extended_hours", "client_order_id",
                  "order_class", "take_profit_limit_price", "stop_loss_stop_price",
                  "stop_loss_limit_price", "advanced_instructions")
@@ -59,7 +61,7 @@ class TicketError(Exception):
     pass
 
 
-# ---------------------------------------------------------------- time (New York, no tz files)
+# ---------------------------------------------------------------- time (India (IST), no tz files)
 
 def _nth_sunday(year, month, n):
     d = datetime.date(year, month, 1)
@@ -68,14 +70,8 @@ def _nth_sunday(year, month, n):
 
 
 def eastern_offset(utc):
-    """Hours from UTC for New York: -4 in daylight time, -5 otherwise.
-    DST runs from 2:00 a.m. on the second Sunday of March to 2:00 a.m. on the
-    first Sunday of November (US rule since 2007)."""
-    y = utc.year
-    start = datetime.datetime.combine(_nth_sunday(y, 3, 2), datetime.time(7, 0))   # 2:00 EST
-    end = datetime.datetime.combine(_nth_sunday(y, 11, 1), datetime.time(6, 0))    # 2:00 EDT
-    naive = utc.replace(tzinfo=None)
-    return -4 if start <= naive < end else -5
+    """Hours from UTC for India: always +5:30 (IST has no daylight time)."""
+    return 5.5
 
 
 def to_eastern(utc):
@@ -83,29 +79,25 @@ def to_eastern(utc):
 
 
 def eastern_to_utc(local):
-    for off in (-4, -5):
-        utc = local - datetime.timedelta(hours=off)
-        if eastern_offset(utc) == off:
-            return utc
-    return local + datetime.timedelta(hours=5)
+    return local - datetime.timedelta(hours=5.5)
 
 
 def parse_now(text):
-    """ISO time -> naive UTC. A time without an offset is taken as New York time."""
+    """ISO time -> naive UTC. A time without an offset is taken as India time (IST)."""
     if not text:
         return datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0, tzinfo=None)
     t = text.strip().replace("Z", "+00:00")
     try:
         dt = datetime.datetime.fromisoformat(t)
     except ValueError:
-        raise TicketError("--now wants a time like \"2026-10-19 10:15\" (New York) or ...Z (UTC)")
+        raise TicketError("--now wants a time like \"2026-10-19 10:15\" (India (IST)) or ...Z (UTC)")
     if dt.tzinfo is None:
         return eastern_to_utc(dt)
     return (dt - dt.utcoffset()).replace(tzinfo=None)
 
 
 def ny_iso(now_utc):
-    """naive UTC -> "2026-10-19T10:15:00-04:00" (New York wall clock with its offset)."""
+    """naive UTC -> "2026-10-19T10:15:00-04:00" (India (IST) wall clock with its offset)."""
     off = eastern_offset(now_utc)
     return "%s%+03d:00" % (to_eastern(now_utc).replace(microsecond=0).isoformat(), off)
 
@@ -144,7 +136,7 @@ def rec_day(rec):
 
 def fingerprint(order):
     """Same function as trader-risk/check.py: identifies the exact order."""
-    core = {k: order[k] for k in ALPACA_FIELDS if k in order and order[k] is not None}
+    core = {k: order[k] for k in ORDER_FIELDS if k in order and order[k] is not None}
     blob = json.dumps(core, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(blob.encode("utf-8")).hexdigest()[:16]
 
@@ -165,12 +157,29 @@ def _f(x):
         return None
 
 
+# Which connector places the order. Tool names differ per broker, so the ticket
+# shows our neutral order and Claude maps it to that connector's order tool;
+# the connector's own approval card shows the real call before anything is sent.
+BROKERS = {
+    "upstox": "Upstox (upstox-skill from the upstox/upstox-plugin-marketplace)",
+    "dhan": "Dhan (official MCP, mcp.dhan.co)",
+    "groww": "Groww (official MCP, mcp.groww.in)",
+    "zerodha": "Zerodha Kite (official MCP, mcp.kite.trade: GTT orders only)",
+}
+
+
+def broker_of(cfg):
+    b = str(cfg.get("broker", "upstox")).lower()
+    return b, BROKERS.get(b, b)
+
+
 def tool_input(order):
-    """The exact arguments for place_stock_order: Alpaca's parameter names,
-    numbers as strings (its signature types qty, notional and prices as str).
+    """The order, broker-neutral: symbol, exchange, product (intraday), side, qty,
+    type, stop_loss_stop_price (the stop-loss trigger), take_profit_limit_price
+    (the target). Claude maps these to the connector's own parameter names.
     "why" and "plan" are ours and are never sent."""
     out = {}
-    for k in ALPACA_FIELDS:
+    for k in ORDER_FIELDS:
         if k in order and order[k] is not None:
             out[k] = _str_num(order[k]) if k in STRING_FIELDS else order[k]
     return out
@@ -179,7 +188,7 @@ def tool_input(order):
 def _money(v):
     f = float(v)
     s = "{:,.2f}".format(f)
-    return "$" + (s[:-3] if s.endswith(".00") else s)
+    return "₹" + (s[:-3] if s.endswith(".00") else s)
 
 
 def _p(v):
@@ -249,8 +258,8 @@ def plain_parts(order):
 
 
 def plain(order):
-    """BUY $1,250 of AAPL, market order, good for today
-    BUY 8 TSLA, market, good for today / stop-loss 358.32 / take-profit 370.04 / max loss about $46.88 ..."""
+    """BUY $1,250 of HDFCBANK, market order, good for today
+    BUY 8 RELIANCE, market, good for today / stop-loss 358.32 / take-profit 370.04 / max loss about $46.88 ..."""
     return " / ".join(plain_parts(order))
 
 
@@ -283,7 +292,7 @@ def parse_yes(reply, order, batch_symbols=()):
     if DOUBT_WORDS & set(words[1:]):
         return False, "the reply has a condition or a doubt in it; ask again"
     sym = str(order.get("symbol", "")).upper()
-    tokens = set(re.findall(r"[A-Z][A-Z.\-]{0,6}", raw.upper()))
+    tokens = set(re.findall(r"[A-Z0-9][A-Z0-9&.\-]{0,19}", raw.upper()))
     others = {s.upper() for s in batch_symbols} - {sym}
     named = tokens & others
     if named:
@@ -335,7 +344,7 @@ def status_of(order, risk, state, today):
     if rec:
         st = rec.get("status")
         if st == "approved":
-            return False, "APPROVED by you at %s, waiting for the place_stock_order call" % rec.get("at"), rv
+            return False, "APPROVED by you at %s, waiting for the order to be placed" % rec.get("at"), rv
         return False, "DONE: %s at %s" % (st, rec.get("at")), rv
     return True, "READY: trader-risk PASS, waiting for your yes", rv
 
@@ -351,10 +360,10 @@ def kind_of(order, rv):
 
 def render(order, idx, total, cfg, risk, state, today):
     ready, label, rv = status_of(order, risk, state, today)
-    broker = str(cfg.get("broker", "alpaca")).lower()
-    paper = cfg.get("paper", True)
-    acct = "PAPER account" if paper else "LIVE ACCOUNT, REAL MONEY"
-    lines = ["ORDER %d of %d, %s, %s" % (idx, total, acct, "Interactive Brokers" if broker == "ibkr" else "Alpaca")]
+    broker, bname = broker_of(cfg)
+    dry = cfg.get("dry_run", True)
+    acct = "DRY RUN (you place it yourself)" if dry else "LIVE ACCOUNT, REAL MONEY"
+    lines = ["ORDER %d of %d, %s, %s" % (idx, total, acct, bname)]
     for part in plain_parts(order):
         lines.append("  " + part)
     if order.get("why"):
@@ -362,20 +371,19 @@ def render(order, idx, total, cfg, risk, state, today):
     lines.append("  " + label)
     for w in (rv or {}).get("warnings", []):
         lines.append("  note: " + w)
-    if broker == "ibkr":
-        lines.append("  Claude drafts this with the Interactive Brokers connector. IBKR sends it to your")
-        lines.append("  IBKR account, and it only goes to the market after you approve it there.")
-    else:
-        lines.append("  Claude will call place_stock_order with exactly:")
-        for l in json.dumps(tool_input(order), indent=2).splitlines():
-            lines.append("    " + l)
-        if is_bracket(order):
-            lines.append("  Alpaca places the entry, then the stop-loss and the take-profit as two orders")
-            lines.append("  that cancel each other: when one fills, the other is canceled.")
+    lines.append("  The order:" if dry else "  Claude will send this order through %s:" % bname)
+    for l in json.dumps(tool_input(order), indent=2).splitlines():
+        lines.append("    " + l)
+    if is_bracket(order):
+        lines.append("  Entry first, then the stop-loss and the target. If your broker has no combined")
+        lines.append("  order for this, the stop-loss goes in as its own SL-M sell right after the fill.")
+    if broker == "zerodha":
+        lines.append("  Zerodha's connector places GTT orders only: use the Kite app for the intraday entry.")
     if ready:
-        lines.append("  Reply \"yes\" to place this one order, or \"no\" to skip it.")
-        if broker != "ibkr":
-            lines.append("  Claude's own card then asks again: Allow once places it, Deny stops it.")
+        lines.append("  Reply \"yes\" to %s this one order, or \"no\" to skip it."
+                     % ("approve (then place it in your broker's app)" if dry else "place"))
+        if not dry:
+            lines.append("  The connector's own approval card then asks again: Allow once places it, Deny stops it.")
     return "\n".join(lines), ready
 
 
@@ -383,8 +391,8 @@ def ticket_json(order, idx, cfg, risk, state, today):
     ready, label, rv = status_of(order, risk, state, today)
     loss, stop = max_loss(order)
     return {"index": idx, "ready": ready, "status": label, "plain": plain(order),
-            "fingerprint": fingerprint(order), "paper": bool(cfg.get("paper", True)),
-            "broker": cfg.get("broker", "alpaca"), "tool": "place_stock_order",
+            "fingerprint": fingerprint(order), "paper": bool(cfg.get("dry_run", True)),
+            "broker": broker_of(cfg)[0], "tool": None if cfg.get("dry_run", True) else broker_of(cfg)[1],
             "tool_input": tool_input(order), "why": order.get("why", ""),
             "bracket": is_bracket(order), "max_loss": loss, "stop": stop}
 
@@ -512,16 +520,18 @@ def cmd_approve(a):
            "symbol": str(order.get("symbol", "")).upper(), "side": order.get("side"),
            "qty": order.get("qty"), "kind": kind_of(order, rv), "max_loss": loss, "stop": stop,
            "plain": plain(order), "status": "approved", "reply": a.reply,
-           "paper": bool(cfg.get("paper", True)), "broker": cfg.get("broker", "alpaca")}
+           "paper": bool(cfg.get("dry_run", True)), "broker": broker_of(cfg)[0]}
     state.setdefault("orders", []).append(rec)
     write_json(a.state, state)
     print("Recorded your yes for order %d: %s." % (a.index, plain(order)))
-    if str(cfg.get("broker", "alpaca")).lower() == "ibkr":
-        print("Now draft it with the Interactive Brokers connector; approve it in your IBKR account.")
-    else:
-        print("Now call place_stock_order with exactly:")
+    if cfg.get("dry_run", True):
+        print("Dry run: place it yourself in your broker's app, exactly as below, then record it:")
         print(json.dumps(tool_input(order), indent=2))
-        print("Claude's card shows Allow once / Deny. Then: ticket.py result --index %d --status "
+        print("ticket.py result --index %d --status placed|failed --broker-id <order id>" % a.index)
+    else:
+        print("Now send it through %s, exactly:" % broker_of(cfg)[1])
+        print(json.dumps(tool_input(order), indent=2))
+        print("The connector's card shows Allow once / Deny. Then: ticket.py result --index %d --status "
               "placed|denied|failed" % a.index)
     return 0
 
@@ -602,18 +612,19 @@ def cmd_flatten(a):
                               "%s) and pass --qty if you do hold some" % (sym, a.portfolio, sym))
     plan = read_json(a.plan, "plan", required=False) or {}
     flat_by = (plan.get("flat_by") if str(plan.get("symbol", "")).upper() == sym else None) \
-        or cfg.get("flat_by") or "15:55"
-    order = {"symbol": sym, "side": "sell", "qty": _str_num(qty), "type": "market", "time_in_force": "day",
-             "why": "flat by %s New York: closes the %s day trade before the close (qty from %s)"
+        or cfg.get("flat_by") or "15:10"
+    order = {"symbol": sym, "exchange": "NSE", "product": "intraday", "side": "sell", "qty": _str_num(qty),
+             "type": "market", "time_in_force": "day",
+             "why": "flat by %s India (IST): closes the %s day trade before the close (qty from %s)"
              % (flat_by, sym, source)}
     old = read_json(a.orders, "orders", required=False)
     replaced = len(old.get("orders", [])) if isinstance(old, dict) else 0
     doc = {"created_by": "trader-broker", "created_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"), "status": "proposed",
-           "paper": bool(cfg.get("paper", True)),
+           "paper": bool(cfg.get("dry_run", True)),
            "note": "Flatten ticket. Nothing is placed until trader-risk passes it and you say yes in the chat.",
            "source": "ticket.py flatten %s on %s" % (sym, today), "orders": [order]}
     write_json(a.orders, doc)
-    print("Flatten %s: %s (flat by %s New York)." % (sym, plain(order), flat_by))
+    print("Flatten %s: %s (flat by %s India (IST))." % (sym, plain(order), flat_by))
     print("Wrote it to %s%s." % (a.orders, (" (it replaced %d earlier proposal%s)"
                                              % (replaced, "" if replaced == 1 else "s")) if replaced else ""))
     if a.qty is None:
@@ -622,9 +633,9 @@ def cmd_flatten(a):
     print("  1. trader-risk: check.py. A sell that only closes what you hold is never blocked by the daily")
     print("     limits or the entry window.")
     print("  2. ticket.py show, then the user's yes for this one order.")
-    print("  3. If the bracket's stop-loss and take-profit are still open, Alpaca holds these shares for them")
-    print("     and rejects a new sell. Cancel them first: get_orders (status open, nested true), then")
-    print("     cancel_order_by_id for each open leg (Needs approval). Then place_stock_order with the ticket.")
+    print("  3. Cancel the open stop-loss / target orders on these shares first (your broker rejects or")
+    print("     double-sells otherwise), then place the sell. Brokers auto square-off intraday positions")
+    print("     around 15:15-15:25 and most charge for it: flatten before that.")
     return 0
 
 
@@ -651,8 +662,8 @@ def main(argv=None):
     sub = ap.add_subparsers(dest="cmd")
 
     def clock(p):
-        p.add_argument("--now", help="pretend it is this New York time, e.g. \"2026-10-19 10:15\"")
-        p.add_argument("--today", help="YYYY-MM-DD (default: today in New York)")
+        p.add_argument("--now", help="pretend it is this India time (IST), e.g. \"2026-10-19 10:15\"")
+        p.add_argument("--today", help="YYYY-MM-DD (default: today in India (IST))")
 
     def common(p):
         p.add_argument("--orders", default="trader/orders.json")
@@ -687,7 +698,7 @@ def main(argv=None):
     p.add_argument("--side", required=True, choices=["buy", "sell"])
     p.add_argument("--qty", required=True)
     p.add_argument("--price", required=True)
-    p.add_argument("--date", help="YYYY-MM-DD (default: today in New York)")
+    p.add_argument("--date", help="YYYY-MM-DD (default: today in India (IST))")
     p.add_argument("--now")
     p.add_argument("--portfolio", default="trader/portfolio.json")
     p.add_argument("--config", default="trader/config.json")
