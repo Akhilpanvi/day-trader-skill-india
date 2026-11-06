@@ -101,8 +101,13 @@ Nothing here is tax advice.
 NSE often blocks scripts (save `EQUITY_L.csv` from a browser if so).
 
 ```bash
-python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s tests -v      # offline, synthetic data
+python3 tests/real_data_check.py              # real NSE data (needs internet)
 ```
+
+**Real data in GitHub's cloud:** Actions tab > "real-data check" > Run workflow.
+It runs the offline tests, then the real-data check, and publishes `REPORT.md`
+(derived numbers only, no raw Yahoo data) to the `real-data-results` branch.
 
 MIT. Original by [Jake Schincariol](https://opusjake.ai); India port by
 [Akhil Panvi](https://akhilpanvi.com).

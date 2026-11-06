@@ -1,0 +1,46 @@
+name: real-data check
+
+# Runs the pack on real NSE data in GitHub's cloud and publishes out/REPORT.md
+# (derived numbers only) to the real-data-results branch.
+# Start it: Actions tab > "real-data check" > Run workflow, or push to the real-data branch.
+on:
+  workflow_dispatch:
+    inputs:
+      symbols:
+        description: "NSE symbols, space separated (blank = the default 20)"
+        required: false
+        default: ""
+  push:
+    branches: [real-data]
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: offline tests
+        run: python3 -m unittest discover -s tests
+      - name: real data
+        env:
+          SYMBOLS: ${{ github.event.inputs.symbols }}
+        run: python3 tests/real_data_check.py $SYMBOLS
+      - name: publish the report
+        if: always()
+        run: |
+          [ -f out/REPORT.md ] || exit 0
+          cp -r out /tmp/out
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan real-data-results
+          git rm -rfq .
+          cp /tmp/out/REPORT.md /tmp/out/summary.json .
+          git add REPORT.md summary.json
+          git commit -qm "real-data check ${{ github.run_id }}"
+          git push -f origin real-data-results
