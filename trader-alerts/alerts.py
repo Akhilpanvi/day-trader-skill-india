@@ -22,9 +22,8 @@ Rule types:
                   (or from "ref" if you give one); "direction": "up" or "down"
   opening_bell    the NSE opened today (rings once per trading day)
   time            the India (IST) clock passed "at" (HH:MM) on a trading day
-                  (rings once per trading day); "before_close": true moves it
-                  3 hours earlier on a 1:00 p.m. early close, so a 15:10
-                  "flat by close" rings at 12:55 on those days
+                  (rings once per trading day); "before_close" is kept for
+                  compatibility (NSE has no early closes)
 
 A rule with "date" is only watched on that India (IST) date (rules from a plan
 are for the plan's day only). An above / below alert rings ONCE and then stays
@@ -723,7 +722,7 @@ def main(argv=None):
     p.add_argument("--config", default="trader/config.json", help="flat_by when the plan has none")
     p.add_argument("--label", help="what a time alert says, e.g. \"flat by close\"")
     p.add_argument("--before-close", action="store_true",
-                   help="a time alert that moves 3 hours earlier on a 1:00 p.m. early close")
+                   help="kept for compatibility: NSE has no early closes")
     p.add_argument("--date", help="watch this rule on this India (IST) date only (YYYY-MM-DD)")
     p.add_argument("--direction", choices=["up", "down"])
     p.add_argument("--rearm", action="store_true")

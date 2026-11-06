@@ -26,8 +26,7 @@ grid count (Yahoo's live tick, e.g. 10:49:45, is dropped) and a bar counts only
 once it has closed: now >= its start + the interval.
 
 Statuses: triggered; waiting (not open yet, range still forming, or no close
-above the level yet); expired (no trigger by no_entries_after, default 15:30;
-on a 1:00 p.m. early close the cutoff moves up three hours with the close);
+above the level yet); expired (no trigger by no_entries_after, default 15:00);
 no-data (the market is closed today or Yahoo sent no bars).
 
 trader/config.json (optional): "no_entries_before" (09:30) and

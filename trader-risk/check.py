@@ -49,8 +49,7 @@ What blocks an entry (on top):
   trades        max_trades_per_day entries already placed today
   window        before no_entries_before or after no_entries_after (India (IST)
                 time), or the market is closed (weekend, NSE holiday, outside
-                9:15 to the close; on a 1:00 p.m. early close the window ends
-                3 hours earlier too)
+                9:15 to the 15:30 close)
   series        not in the EQ series (trader/universe.txt, if you have one):
                 BE / trade-to-trade stocks can't be squared off the same day
   loss counts charges: brokerage, STT, exchange, SEBI, stamp and GST at the stop.

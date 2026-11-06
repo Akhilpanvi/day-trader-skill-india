@@ -30,7 +30,7 @@ entry.json that has not triggered (unless you give --entry), a short (v2
 plans longs only).
 
 flat_by (default 15:10, or "flat_by" in trader/config.json): out by then, win
-or lose. On a 1:00 p.m. early close it moves up with the close (12:55).
+or lose, and before the broker's intraday auto square-off (about 15:15-15:25).
 "min_reward_risk" in the config (default 1.0) only warns here; trader-risk
 enforces it.
 

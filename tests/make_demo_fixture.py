@@ -20,7 +20,7 @@ def sessions(last, n):
     return out[::-1]
 
 
-def build(seed=7):
+def build(seed=7, symbol="DEMO"):
     rnd = random.Random(seed)
     days = sessions(dt.date(2026, 11, 6), 61)
     ts, o, h, l, c, v = [], [], [], [], [], []
@@ -46,7 +46,7 @@ def build(seed=7):
             ts.append(int((start - IST - dt.datetime(1970, 1, 1)).total_seconds()))
             o.append(round(op, 2)); h.append(round(hi, 2)); l.append(round(lo, 2)); c.append(round(cl, 2))
             v.append(int(rnd.uniform(40000, 120000) * (2.5 if b < 3 else 1)))
-    meta = {"currency": "INR", "symbol": "DEMO.NS", "exchangeName": "NSI", "instrumentType": "EQUITY",
+    meta = {"currency": "INR", "symbol": symbol + ".NS", "exchangeName": "NSI", "instrumentType": "EQUITY",
             "gmtoffset": 19800, "timezone": "IST", "exchangeTimezoneName": "Asia/Kolkata",
             "regularMarketPrice": c[-1], "chartPreviousClose": c[-76], "previousClose": c[-76],
             "dataGranularity": "5m", "range": "60d", "longName": "Demo Synthetic Ltd (not a real stock)"}
